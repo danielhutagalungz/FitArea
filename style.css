@@ -3,8 +3,8 @@
   --bg: #061E29;
   --aksen: #5F9598;
   --font-color: #F3F4F4;
-  --font-heading: "Oswald", sans-serif;
-  --font-body: "Roboto", Arial, sans-serif;
+  --font-heading: "Oswald", Arial, sans-serif;
+  --font-body: "Poppins", Arial, sans-serif;
 }
 
 * {
@@ -21,7 +21,7 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-main);
   background-color: var(--bg);
   color: #fff;
 }
@@ -32,4 +32,13 @@ html, body {
 }
 
 /* NAVBAR */
-
+h1 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+}
+h2 {
+  font-family: var(--font-heading);
+}
+p {
+  font-family: var(--font-body);
+}
