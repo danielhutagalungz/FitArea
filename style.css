@@ -5,6 +5,12 @@
   --font-color: #F3F4F4;
   --font-heading: "Oswald", sans-serif;
   --font-body: "Roboto", Arial, sans-serif;
+
+  /* tambahan untuk section jadwal */
+  --card: #0C2C3B;
+  --card-hover: #123A4D;
+  --garis: #1D546D;
+  --font-sekunder: #A9BCC4;
 }
 
 * {
@@ -31,5 +37,185 @@ html, body {
   max-width: 100%;
 }
 
-/* NAVBAR */
+/* JADWAL KELAS */
+.jadwal {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
 
+.jadwal h2 {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--font-color);
+}
+
+.jadwal .sub {
+  text-align: center;
+  color: var(--font-sekunder);
+  margin: 8px 0 32px;
+}
+
+/* Tombol filter hari */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.filter button {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 22px;
+  min-height: 44px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--garis);
+  color: var(--font-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter button:hover {
+  border-color: var(--aksen);
+  color: var(--aksen);
+}
+
+.filter button.aktif {
+  background: var(--aksen);
+  border-color: var(--aksen);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+/* Tabel jadwal */
+.tabel-wrap {
+  background: var(--card);
+  border: 1px solid var(--garis);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+thead {
+  background: var(--primary);
+  color: var(--font-color);
+}
+
+th, td {
+  text-align: left;
+  padding: 16px 20px;
+}
+
+th {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+tbody tr {
+  transition: background 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(29, 84, 109, 0.18);
+}
+
+tbody tr:hover {
+  background: var(--card-hover);
+}
+
+td {
+  border-bottom: 1px solid rgba(95, 149, 152, 0.2);
+  font-size: 15px;
+  color: var(--font-color);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.badge-hari {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--font-color);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.nama-kelas {
+  font-weight: 700;
+  color: var(--aksen);
+}
+
+.kosong {
+  text-align: center;
+  color: var(--font-sekunder);
+  padding: 32px;
+}
+
+/* Tombol lihat selengkapnya */
+.area-toggle {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.toggle-jadwal {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 28px;
+  min-height: 44px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--aksen);
+  color: var(--aksen);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-jadwal:hover {
+  background: var(--aksen);
+  color: var(--bg);
+}
+
+.toggle-jadwal .panah {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.toggle-jadwal.terbuka .panah {
+  transform: rotate(180deg);
+}
+
+.info-jumlah {
+  margin-top: 16px;
+  text-align: center;
+  color: var(--font-sekunder);
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .jadwal { padding: 56px 16px; }
+  .jadwal h2 { font-size: 30px; }
+}
