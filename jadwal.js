@@ -76,11 +76,11 @@ function tampilkanJadwal(hari) {
   tampil.forEach(function (item) {
     const baris = document.createElement("tr");
     baris.innerHTML =
-      '<td><span class="badge-hari">' + item.hari + "</span></td>" +
-      "<td>" + item.jam + "</td>" +
-      '<td class="nama-kelas">' + item.kelas + "</td>" +
-      "<td>" + item.trainer + "</td>" +
-      "<td>" + item.durasi + "</td>";
+      '<td data-label="Hari"><span class="badge-hari">' + item.hari + "</span></td>" +
+      '<td data-label="Jam">' + item.jam + "</td>" +
+      '<td data-label="Kelas" class="nama-kelas">' + item.kelas + "</td>" +
+      '<td data-label="Trainer">' + item.trainer + "</td>" +
+      '<td data-label="Durasi">' + item.durasi + "</td>";
     isiJadwal.appendChild(baris);
   });
 
