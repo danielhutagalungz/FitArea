@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fit Area</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -572,122 +574,147 @@
 
     <!-- DISINI BARU FAQ, FOOTER -->
     <!-- section Faq -->
-    <!-- ================= SECTION FAQ ================= -->
-     <section id="faq" class="faq-section">
-        <div class="container">
-            <h2 class="section-title">Pertanyaan Umum (FAQ)</h2>
-            <p class="section-subtitle">Temukan jawaban untuk pertanyaan yang sering ditanyakan mengenai Fitarea GYM.</p>
+    <!-- ================= SECTION FAQ (TAILWIND) ================= -->
+    <section id="faq" class="max-w-[1000px] mx-auto py-20 px-5 scroll-mt-[var(--nav-h)]">
+      <div class="container mx-auto">
+        <h2 class="text-center text-3xl sm:text-4xl font-bold uppercase tracking-wider text-[var(--font-color)] font-['Oswald'] relative after:content-[''] after:block after:w-[56px] after:h-[3px] after:mx-auto after:mt-3.5 after:bg-[var(--aksen)] after:rounded-sm">
+          Pertanyaan Umum (FAQ)
+        </h2>
+        <p class="text-center text-[var(--font-sekunder)] mt-4 mb-8 text-sm sm:text-base">
+          Temukan jawaban untuk pertanyaan yang sering ditanyakan mengenai Fitarea GYM.
+        </p>
 
-            <div class="accordion">
-               <!-- Pertanyaan 1 -->
-              <div class="accordion-item">
-                <button class="accordion-header" type="button">
-                  <span>Berapa jam operasional FitArea GYM?</span>
-                  <span class="accordion-icon">&#9660;</span>
-                </button>
-                <div class="accordion-content">
-                  <p>FitArea GYM buka setiap hari Senin – Sabtu mulai pukul 05.00 hingga 23.00 WIB. Untuk hari Minggu dan Libur Nasional buka pukul 08.00 hingga 18.00 WIB.</p>
-                </div>
-              </div>
-
-              <!-- pertanyaan 2  -->
-              <div class="accordion-item">
-                <button class="accordion-header" type="button">
-                  <span>Bagaimana cara mendaftar keanggotaan (membership)?</span>
-                  <span class="accordion-icon">&#9660;</span>
-                </button>
-                <div class="accordion-content">
-                  <p>Kamu bisa mendaftar secara online melalui formulir "Join Membership" pada website ini atau mendaftar langsung di resepsionis FitArea GYM.</p>
-                </div>
-              </div>
-
-              <!-- Pertanyaan 3 -->
-              <div class="accordion-item">
-                <button class="accordion-header" type="button">
-                  <span>Fasilitas apa saja yang tersedia di FitArea GYM?</span>
-                  <span class="accordion-icon">&#9660;</span>
-                </button>
-                <div class="accordion-content">
-                  <p>Fasilitas kami meliputi area angkat beban lengkap, studio kelas (Yoga, Zumba, HIIT), loker pribadi, shower room, dan sesi konsultasi awal dengan personal trainer.</p>
-                </div>
-              </div>
-
-              <!-- Pertanyaan 4 -->
-              <div class="accordion-item">
-                <button class="accordion-header" type="button">
-                  <span>Apakah saya bisa membatalkan atau membekukan membership?</span>
-                  <span class="accordion-icon">&#9660;</span>
-                </button>
-                <div class="accordion-content">
-                  <p>Bisa. Pembekuan (freeze) membership dapat diajukan maksimal 30 hari dalam setahun dengan konfirmasi H-3 ke staf admin FitArea.</p>
-                </div>
-              </div>
-
-              <!-- Pertanyaan 5 -->
-              <div class="accordion-item">
-                <button class="accordion-header" type="button">
-                  <span>Apakah tersedia Personal Trainer untuk pemula?</span>
-                  <span class="accordion-icon">&#9660;</span>
-                </button>
-                <div class="accordion-content">
-                  <p>Tentu saja! Trainer profesional bersertifikat kami siap membimbing teknik latihan dasar yang aman, menyusun program kustom, serta mendampingi target kebugaranmu.</p>
-                </div>
-              </div>
-
-              <!-- Pertanyaan 6 -->
-              <div class="accordion-item">
-                <button class="accordion-header" type="button">
-                  <span>Apakah disediakan loker dan handuk gratis?</span>
-                  <span class="accordion-icon">&#9660;</span>
-                </button>
-                <div class="accordion-content">
-                  <p>Locker harian gratis dapat digunakan oleh seluruh member selama jam latihan. Peminjaman handuk steril disediakan khusus untuk paket membership tertentu.</p>
-                </div>
-              </div>
-
-             
+        <div class="accordion flex flex-col gap-3">
+          <!-- Pertanyaan 1 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Berapa jam operasional FitArea GYM?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                FitArea GYM buka setiap hari Senin – Sabtu mulai pukul 05.00 hingga 23.00 WIB. Untuk hari Minggu dan Libur Nasional buka pukul 08.00 hingga 18.00 WIB.
+              </p>
             </div>
+          </div>
+
+          <!-- Pertanyaan 2 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Bagaimana cara mendaftar keanggotaan (membership)?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Kamu bisa mendaftar secara online melalui formulir "Join Membership" pada website ini atau mendaftar langsung di resepsionis FitArea GYM.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 3 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Fasilitas apa saja yang tersedia di FitArea GYM?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Fasilitas kami meliputi area angkat beban lengkap, studio kelas (Yoga, Zumba, HIIT), loker pribadi, shower room, dan sesi konsultasi awal dengan personal trainer.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 4 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Apakah saya bisa membatalkan atau membekukan membership?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Bisa. Pembekuan (freeze) membership dapat diajukan maksimal 30 hari dalam setahun dengan konfirmasi H-3 ke staf admin FitArea.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 5 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Apakah tersedia Personal Trainer untuk pemula?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Tentu saja! Trainer profesional bersertifikat kami siap membimbing teknik latihan dasar yang aman, menyusun program kustom, serta mendampingi target kebugaranmu.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 6 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Apakah disediakan loker dan handuk gratis?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Locker harian gratis dapat digunakan oleh seluruh member selama jam latihan. Peminjaman handuk steril disediakan khusus untuk paket membership tertentu.
+              </p>
+            </div>
+          </div>
         </div>
-      </section>
-    <!-- FOOTER START -->
-    <footer class="site-footer">
-      <div class="footer-container">
+      </div>
+    </section>
+
+    <!-- FOOTER START (TAILWIND) -->
+    <footer class="site-footer bg-[var(--surface)] text-[var(--font-color)] pt-14 border-t border-[var(--line)]">
+      <div class="footer-container max-w-[1100px] mx-auto px-5 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         <!-- Brand & deskripsi -->
         <div class="footer-col brand-col">
-          <h3 class="footer-logo">Fit<span>Area</span></h3>
-          <p>
+          <h3 class="footer-logo font-['Oswald'] text-3xl font-bold text-[var(--font-color)] mb-3">
+            Fit<span class="text-[var(--aksen)]">Area</span>
+          </h3>
+          <p class="text-[var(--font-color)] text-opacity-75 text-sm leading-relaxed">
             Pusat kebugaran modern dengan fasilitas lengkap dan trainer berpengalaman untuk membantu mencapai bentuk tubuh idealmu.
           </p>
         </div>
 
         <!-- Jam Operasional -->
         <div class="footer-col">
-          <h4>Jam Operasional</h4>
-          <ul class="footer-info">
-            <li><span>Senin – Sabtu:</span> 05.00 – 23.00 WIB</li>
-            <li><span>Minggu & Libur:</span> 08.00 – 18.00 WIB</li>
+          <h4 class="font-['Oswald'] text-lg font-medium tracking-wide uppercase text-[var(--aksen)] mb-4">
+            Jam Operasional
+          </h4>
+          <ul class="footer-info space-y-2.5 text-sm text-[var(--font-color)] text-opacity-80">
+            <li><span class="font-semibold text-[var(--font-color)]">Senin – Sabtu:</span> 05.00 – 23.00 WIB</li>
+            <li><span class="font-semibold text-[var(--font-color)]">Minggu & Libur:</span> 08.00 – 18.00 WIB</li>
           </ul>
         </div>
 
         <!-- Kontak Kami -->
         <div class="footer-col">
-          <h4>Kontak Kami</h4>
-          <ul class="footer-info">
-            <li><strong>Telepon:</strong> +62 822-2658-5215</li>
-            <li><strong>Email:</strong> fitArea@gmail.com</li>
-            <li><strong>WhatsApp:</strong> 0822-2658-5215</li>
+          <h4 class="font-['Oswald'] text-lg font-medium tracking-wide uppercase text-[var(--aksen)] mb-4">
+            Kontak Kami
+          </h4>
+          <ul class="footer-info space-y-2.5 text-sm text-[var(--font-color)] text-opacity-80">
+            <li><strong class="font-semibold text-[var(--font-color)]">Telepon:</strong> +62 822-2658-5215</li>
+            <li><strong class="font-semibold text-[var(--font-color)]">Email:</strong> fitArea@gmail.com</li>
+            <li><strong class="font-semibold text-[var(--font-color)]">WhatsApp:</strong> 0822-2658-5215</li>
           </ul>
         </div>
 
         <!-- Alamat -->
         <div class="footer-col">
-          <h4>Alamat GYM</h4>
-          <p>Jl. Dr. Mansyur No. 99, Kampus USU, Medan, Sumatera Utara 20155</p>
+          <h4 class="font-['Oswald'] text-lg font-medium tracking-wide uppercase text-[var(--aksen)] mb-4">
+            Alamat GYM
+          </h4>
+          <p class="text-[var(--font-color)] text-opacity-75 text-sm leading-relaxed">
+            Jl. Dr. Mansyur No. 99, Kampus USU, Medan, Sumatera Utara 20155
+          </p>
         </div>
       </div>
 
       <!-- Copyright -->
-      <div class="footer-bottom">
+      <div class="footer-bottom bg-[var(--bg)] text-center py-5 text-xs text-[var(--font-sekunder)] border-t border-[var(--line)]">
         <p>&copy; 2026 FitArea GYM.</p>
       </div>
     </footer>
