@@ -1943,3 +1943,50 @@ p {
     font-size: 0.75rem;
   }
 }
+
+/*FAQ section  */
+/*----------------  */
+.faq-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  scroll-margin-top: var(--nav-h);
+}
+
+.faq-section .section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--font-color);
+}
+
+/* Garis aksen kecil di bawah judul */
+.faq-section .section-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 14px auto 0;
+  background-color: var(--aksen);
+  border-radius: 2px;
+}
+
+.faq-section .section-subtitle {
+  text-align: center;
+  color: var(--font-sekunder);
+  margin: 16px 0 32px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
