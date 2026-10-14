@@ -2070,6 +2070,10 @@ p {
 
 /* Responsif untuk layar HP (kurang dari 600px) */
 @media (max-width: 600px) {
+  .faq-section {
+    padding: 56px 16px;
+  }
+}
 
 /* Footer */
 /*-----------  */
