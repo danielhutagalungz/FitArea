@@ -1267,3 +1267,104 @@ p {
     transform: none;
   }
 }
+
+html { scroll-behavior: smooth; }
+
+.membership {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.membership-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.paket-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+  text-align: left;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.paket-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.paket-card.populer {
+  border: 2px solid #ff5a1f;
+}
+
+.paket-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: #ff5a1f;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.paket-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.paket-harga {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.paket-harga span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #666;
+}
+
+.paket-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  flex-grow: 1;
+}
+
+.paket-card li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.paket-card li::before {
+  content: "✓ ";
+  color: #ff5a1f;
+  font-weight: 700;
+}
+
+.btn-paket {
+  display: block;
+  padding: 12px;
+  border-radius: 8px;
+  background: #ff5a1f;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-paket:hover { background: #e04a12; }
