@@ -5,6 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fit Area</title>
     <link rel="stylesheet" href="style.css" />
+<<<<<<< Updated upstream
+=======
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      /* Token Tailwind menunjuk ke CSS variable di style.css (:root),
+         jadi warna & font tetap satu sumber. Contoh: bg-aksen = var(--aksen) */
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              aksen: "var(--aksen)",
+              page: "var(--bg)",
+              card: "var(--card)",
+              primary: "var(--primary)",
+              ink: "var(--font-color)",
+              muted: "var(--font-sekunder)",
+              line: "var(--line)",
+            },
+            fontFamily: {
+              heading: ["Oswald", "sans-serif"],
+              body: ["Roboto", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+>>>>>>> Stashed changes
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -45,34 +73,58 @@
     <!-- NAVBAR END -->
 
     <!-- hero start-->
-    <section class="hero" id="hero">
+    <!-- Breakpoint mengikuti style.css lama: max-[800px] = tablet/HP, max-[480px] = HP kecil -->
+    <section
+      id="hero"
+      class="relative grid grid-cols-[1fr_1fr] min-h-[90vh] after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[200px] after:bg-[linear-gradient(to_bottom,transparent,var(--bg))] after:pointer-events-none after:z-[1] max-[800px]:grid-cols-[1fr] max-[800px]:grid-rows-[1fr] max-[800px]:min-h-[100svh] max-[800px]:after:h-24"
+    >
+      <!-- Foto: kiri di desktop, jadi latar penuh (menumpuk di sel grid yang sama) di layar kecil -->
       <div
-        class="hero-photo"
+        class="[background:linear-gradient(to_bottom,rgba(6,30,41,0.75),transparent_25%),linear-gradient(to_right,transparent_55%,var(--bg)),url('gym3hade.jpeg')_center_40%/cover_no-repeat] max-[800px]:row-start-1 max-[800px]:col-start-1 max-[800px]:[background:linear-gradient(to_bottom,rgba(6,30,41,0.85),rgba(6,30,41,0.55)_35%,rgba(6,30,41,0.92)),url('gym3hade.jpeg')_center/cover_no-repeat]"
         role="img"
         aria-label="Area angkat beban di Fit Area"
       ></div>
 
-      <div class="hero-text">
-        <h1>Fit Area</h1>
-        <p class="hero-tagline">Latihan serius, tempat yang nyaman.</p>
-        <p class="hero-desc">
+      <div
+        class="relative z-[2] flex flex-col justify-center items-start pt-[calc(var(--nav-h)+48px)] pr-[8vw] pb-24 pl-8 max-[800px]:row-start-1 max-[800px]:col-start-1 max-[800px]:pt-[calc(var(--nav-h)+32px)] max-[800px]:px-6"
+      >
+        <h1
+          class="font-heading text-[length:clamp(3.5rem,8vw,7rem)] font-bold leading-[0.95] uppercase text-ink"
+        >
+          Fit Area
+        </h1>
+        <p
+          class="mt-5 font-heading text-[length:clamp(1.25rem,2.2vw,1.75rem)] font-normal text-aksen"
+        >
+          Latihan serius, tempat yang nyaman.
+        </p>
+        <p class="mt-4 max-w-[460px] font-body leading-[1.7] text-ink opacity-[0.85]">
           Alat lengkap, pelatih bersertifikat, dan buka dari subuh sampai malam.
           Daftar hari ini, mulai latihan besok pagi.
         </p>
 
+<<<<<<< Updated upstream
         <div class="hero-buttons">
           <a href="#daftar" class="btn btn-primary">Daftar member</a>
+=======
+        <div class="flex flex-wrap gap-4 mt-9">
+          <a
+            href="#membership"
+            class="inline-block py-[14px] px-[30px] rounded-full font-body font-medium bg-aksen text-page transition-[background-color,color,border-color] duration-200 ease-[ease] hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-4 max-[480px]:flex-[1_1_100%] max-[480px]:text-center"
+            >Daftar member</a
+          >
+>>>>>>> Stashed changes
         </div>
 
         <!-- Info singkat (ubah sesuai data gym Anda) -->
-        <dl class="hero-info">
-          <div>
-            <dt>Jam buka</dt>
-            <dd>05.00–23.00</dd>
+        <dl class="flex flex-wrap gap-x-8 gap-y-5 mt-12 max-[800px]:gap-x-6 max-[800px]:gap-y-4">
+          <div class="border-l-2 border-aksen pl-[14px]">
+            <dt class="text-[0.85rem] opacity-70">Jam buka</dt>
+            <dd class="mt-1 text-[1.1rem] font-medium">05.00–23.00</dd>
           </div>
-          <div>
-            <dt>Mulai dari</dt>
-            <dd>Rp250.000</dd>
+          <div class="border-l-2 border-aksen pl-[14px]">
+            <dt class="text-[0.85rem] opacity-70">Mulai dari</dt>
+            <dd class="mt-1 text-[1.1rem] font-medium">Rp250.000</dd>
           </div>
         </dl>
       </div>
@@ -116,6 +168,225 @@
     </section>
     <!-- PROGRAM LATIHAN END -->
 
+<<<<<<< Updated upstream
+=======
+    <!-- TRAINER START -->
+    <section
+      id="trainer"
+      class="max-w-[1200px] mx-auto py-20 px-5 scroll-mt-[var(--nav-h)] max-[480px]:py-14 max-[480px]:px-4"
+    >
+      <h2
+        class="font-heading text-[length:clamp(2rem,5vw,2.5rem)] uppercase tracking-[1px] text-center text-ink after:content-[''] after:block after:w-14 after:h-[3px] after:mt-[14px] after:mx-auto after:bg-aksen after:rounded-sm"
+      >
+        Tim Trainer
+      </h2>
+      <p class="text-center text-muted mt-4 mb-12">
+        Dibimbing langsung oleh pelatih bersertifikat FitArea
+      </p>
+
+      <!--
+        FOTO: taruh file foto di folder "trainer/" (sejajar index.html) dengan
+        nama sesuai slug di class before:bg-[url('trainer/nama-file.jpg')].
+        Selama foto belum ada, kartu menampilkan inisial nama sebagai gantinya.
+        Spesialis & hari mengajar mengikuti data di jadwal.js.
+      -->
+      <div class="grid grid-cols-[repeat(3,1fr)] gap-6 max-[900px]:grid-cols-[repeat(2,1fr)] max-[480px]:gap-3.5">
+        <article
+          class="group relative overflow-hidden rounded-xl bg-card border border-line transition-[transform,border-color,box-shadow] duration-[250ms] ease-[ease] hover:-translate-y-2 hover:border-aksen hover:shadow-[0_14px_28px_rgba(0,0,0,0.4)]"
+        >
+          <!-- ::before = lapisan foto. Kalau file foto tidak ada, inisial di bawahnya tetap terlihat -->
+          <div
+            class="relative aspect-[4/5] grid place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_35%,var(--primary),var(--card)_75%)] before:content-[''] before:absolute before:inset-0 before:z-[1] before:bg-[url('trainer/dewi-anggraini.jpg')] before:bg-center before:bg-cover before:bg-no-repeat before:transition-transform before:duration-500 before:ease-[ease] group-hover:before:scale-[1.06]"
+          >
+            <span
+              class="font-heading text-[length:clamp(3rem,8vw,4.5rem)] font-medium tracking-[2px] text-[rgba(243,244,244,0.3)]"
+              aria-hidden="true"
+              >DA</span
+            >
+          </div>
+          <div
+            class="absolute inset-x-0 bottom-0 z-[2] pt-14 px-5 pb-5 bg-[linear-gradient(to_top,rgba(6,30,41,0.96),rgba(6,30,41,0.75)_55%,transparent)] max-[480px]:pt-10 max-[480px]:px-3 max-[480px]:pb-3.5"
+          >
+            <h3
+              class="font-heading text-[1.35rem] font-medium leading-[1.2] text-ink max-[480px]:text-[1.05rem]"
+            >
+              Dewi Anggraini
+            </h3>
+            <p
+              class="inline-block mt-2 py-[3px] px-3 rounded-full bg-aksen text-page text-[0.8rem] font-bold leading-[1.3] max-[480px]:text-[0.7rem] max-[480px]:px-2.5"
+            >
+              Yoga
+            </p>
+            <p class="mt-2 text-[0.85rem] text-muted max-[480px]:text-[0.75rem]">
+              Sen &middot; Rab &middot; Jum
+            </p>
+          </div>
+        </article>
+
+        <article
+          class="group relative overflow-hidden rounded-xl bg-card border border-line transition-[transform,border-color,box-shadow] duration-[250ms] ease-[ease] hover:-translate-y-2 hover:border-aksen hover:shadow-[0_14px_28px_rgba(0,0,0,0.4)]"
+        >
+          <!-- ::before = lapisan foto. Kalau file foto tidak ada, inisial di bawahnya tetap terlihat -->
+          <div
+            class="relative aspect-[4/5] grid place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_35%,var(--primary),var(--card)_75%)] before:content-[''] before:absolute before:inset-0 before:z-[1] before:bg-[url('trainer/rafi-pratama.jpg')] before:bg-center before:bg-cover before:bg-no-repeat before:transition-transform before:duration-500 before:ease-[ease] group-hover:before:scale-[1.06]"
+          >
+            <span
+              class="font-heading text-[length:clamp(3rem,8vw,4.5rem)] font-medium tracking-[2px] text-[rgba(243,244,244,0.3)]"
+              aria-hidden="true"
+              >RP</span
+            >
+          </div>
+          <div
+            class="absolute inset-x-0 bottom-0 z-[2] pt-14 px-5 pb-5 bg-[linear-gradient(to_top,rgba(6,30,41,0.96),rgba(6,30,41,0.75)_55%,transparent)] max-[480px]:pt-10 max-[480px]:px-3 max-[480px]:pb-3.5"
+          >
+            <h3
+              class="font-heading text-[1.35rem] font-medium leading-[1.2] text-ink max-[480px]:text-[1.05rem]"
+            >
+              Rafi Pratama
+            </h3>
+            <p
+              class="inline-block mt-2 py-[3px] px-3 rounded-full bg-aksen text-page text-[0.8rem] font-bold leading-[1.3] max-[480px]:text-[0.7rem] max-[480px]:px-2.5"
+            >
+              HIIT
+            </p>
+            <p class="mt-2 text-[0.85rem] text-muted max-[480px]:text-[0.75rem]">
+              Sen &middot; Rab &middot; Jum
+            </p>
+          </div>
+        </article>
+
+        <article
+          class="group relative overflow-hidden rounded-xl bg-card border border-line transition-[transform,border-color,box-shadow] duration-[250ms] ease-[ease] hover:-translate-y-2 hover:border-aksen hover:shadow-[0_14px_28px_rgba(0,0,0,0.4)]"
+        >
+          <!-- ::before = lapisan foto. Kalau file foto tidak ada, inisial di bawahnya tetap terlihat -->
+          <div
+            class="relative aspect-[4/5] grid place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_35%,var(--primary),var(--card)_75%)] before:content-[''] before:absolute before:inset-0 before:z-[1] before:bg-[url('trainer/bima-saputra.jpg')] before:bg-center before:bg-cover before:bg-no-repeat before:transition-transform before:duration-500 before:ease-[ease] group-hover:before:scale-[1.06]"
+          >
+            <span
+              class="font-heading text-[length:clamp(3rem,8vw,4.5rem)] font-medium tracking-[2px] text-[rgba(243,244,244,0.3)]"
+              aria-hidden="true"
+              >BS</span
+            >
+          </div>
+          <div
+            class="absolute inset-x-0 bottom-0 z-[2] pt-14 px-5 pb-5 bg-[linear-gradient(to_top,rgba(6,30,41,0.96),rgba(6,30,41,0.75)_55%,transparent)] max-[480px]:pt-10 max-[480px]:px-3 max-[480px]:pb-3.5"
+          >
+            <h3
+              class="font-heading text-[1.35rem] font-medium leading-[1.2] text-ink max-[480px]:text-[1.05rem]"
+            >
+              Bima Saputra
+            </h3>
+            <p
+              class="inline-block mt-2 py-[3px] px-3 rounded-full bg-aksen text-page text-[0.8rem] font-bold leading-[1.3] max-[480px]:text-[0.7rem] max-[480px]:px-2.5"
+            >
+              Strength Training
+            </p>
+            <p class="mt-2 text-[0.85rem] text-muted max-[480px]:text-[0.75rem]">
+              Sen &middot; Kam &middot; Sab
+            </p>
+          </div>
+        </article>
+
+        <article
+          class="group relative overflow-hidden rounded-xl bg-card border border-line transition-[transform,border-color,box-shadow] duration-[250ms] ease-[ease] hover:-translate-y-2 hover:border-aksen hover:shadow-[0_14px_28px_rgba(0,0,0,0.4)]"
+        >
+          <!-- ::before = lapisan foto. Kalau file foto tidak ada, inisial di bawahnya tetap terlihat -->
+          <div
+            class="relative aspect-[4/5] grid place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_35%,var(--primary),var(--card)_75%)] before:content-[''] before:absolute before:inset-0 before:z-[1] before:bg-[url('trainer/sinta-maharani.jpg')] before:bg-center before:bg-cover before:bg-no-repeat before:transition-transform before:duration-500 before:ease-[ease] group-hover:before:scale-[1.06]"
+          >
+            <span
+              class="font-heading text-[length:clamp(3rem,8vw,4.5rem)] font-medium tracking-[2px] text-[rgba(243,244,244,0.3)]"
+              aria-hidden="true"
+              >SM</span
+            >
+          </div>
+          <div
+            class="absolute inset-x-0 bottom-0 z-[2] pt-14 px-5 pb-5 bg-[linear-gradient(to_top,rgba(6,30,41,0.96),rgba(6,30,41,0.75)_55%,transparent)] max-[480px]:pt-10 max-[480px]:px-3 max-[480px]:pb-3.5"
+          >
+            <h3
+              class="font-heading text-[1.35rem] font-medium leading-[1.2] text-ink max-[480px]:text-[1.05rem]"
+            >
+              Sinta Maharani
+            </h3>
+            <p
+              class="inline-block mt-2 py-[3px] px-3 rounded-full bg-aksen text-page text-[0.8rem] font-bold leading-[1.3] max-[480px]:text-[0.7rem] max-[480px]:px-2.5"
+            >
+              Zumba
+            </p>
+            <p class="mt-2 text-[0.85rem] text-muted max-[480px]:text-[0.75rem]">
+              Sel &middot; Kam &middot; Sab
+            </p>
+          </div>
+        </article>
+
+        <article
+          class="group relative overflow-hidden rounded-xl bg-card border border-line transition-[transform,border-color,box-shadow] duration-[250ms] ease-[ease] hover:-translate-y-2 hover:border-aksen hover:shadow-[0_14px_28px_rgba(0,0,0,0.4)]"
+        >
+          <!-- ::before = lapisan foto. Kalau file foto tidak ada, inisial di bawahnya tetap terlihat -->
+          <div
+            class="relative aspect-[4/5] grid place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_35%,var(--primary),var(--card)_75%)] before:content-[''] before:absolute before:inset-0 before:z-[1] before:bg-[url('trainer/andre-wijaya.jpg')] before:bg-center before:bg-cover before:bg-no-repeat before:transition-transform before:duration-500 before:ease-[ease] group-hover:before:scale-[1.06]"
+          >
+            <span
+              class="font-heading text-[length:clamp(3rem,8vw,4.5rem)] font-medium tracking-[2px] text-[rgba(243,244,244,0.3)]"
+              aria-hidden="true"
+              >AW</span
+            >
+          </div>
+          <div
+            class="absolute inset-x-0 bottom-0 z-[2] pt-14 px-5 pb-5 bg-[linear-gradient(to_top,rgba(6,30,41,0.96),rgba(6,30,41,0.75)_55%,transparent)] max-[480px]:pt-10 max-[480px]:px-3 max-[480px]:pb-3.5"
+          >
+            <h3
+              class="font-heading text-[1.35rem] font-medium leading-[1.2] text-ink max-[480px]:text-[1.05rem]"
+            >
+              Andre Wijaya
+            </h3>
+            <p
+              class="inline-block mt-2 py-[3px] px-3 rounded-full bg-aksen text-page text-[0.8rem] font-bold leading-[1.3] max-[480px]:text-[0.7rem] max-[480px]:px-2.5"
+            >
+              Boxing
+            </p>
+            <p class="mt-2 text-[0.85rem] text-muted max-[480px]:text-[0.75rem]">
+              Sel &middot; Kam &middot; Sab
+            </p>
+          </div>
+        </article>
+
+        <article
+          class="group relative overflow-hidden rounded-xl bg-card border border-line transition-[transform,border-color,box-shadow] duration-[250ms] ease-[ease] hover:-translate-y-2 hover:border-aksen hover:shadow-[0_14px_28px_rgba(0,0,0,0.4)]"
+        >
+          <!-- ::before = lapisan foto. Kalau file foto tidak ada, inisial di bawahnya tetap terlihat -->
+          <div
+            class="relative aspect-[4/5] grid place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_35%,var(--primary),var(--card)_75%)] before:content-[''] before:absolute before:inset-0 before:z-[1] before:bg-[url('trainer/laras-putri.jpg')] before:bg-center before:bg-cover before:bg-no-repeat before:transition-transform before:duration-500 before:ease-[ease] group-hover:before:scale-[1.06]"
+          >
+            <span
+              class="font-heading text-[length:clamp(3rem,8vw,4.5rem)] font-medium tracking-[2px] text-[rgba(243,244,244,0.3)]"
+              aria-hidden="true"
+              >LP</span
+            >
+          </div>
+          <div
+            class="absolute inset-x-0 bottom-0 z-[2] pt-14 px-5 pb-5 bg-[linear-gradient(to_top,rgba(6,30,41,0.96),rgba(6,30,41,0.75)_55%,transparent)] max-[480px]:pt-10 max-[480px]:px-3 max-[480px]:pb-3.5"
+          >
+            <h3
+              class="font-heading text-[1.35rem] font-medium leading-[1.2] text-ink max-[480px]:text-[1.05rem]"
+            >
+              Laras Putri
+            </h3>
+            <p
+              class="inline-block mt-2 py-[3px] px-3 rounded-full bg-aksen text-page text-[0.8rem] font-bold leading-[1.3] max-[480px]:text-[0.7rem] max-[480px]:px-2.5"
+            >
+              Cardio
+            </p>
+            <p class="mt-2 text-[0.85rem] text-muted max-[480px]:text-[0.75rem]">
+              Sel &middot; Rab &middot; Jum
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <!-- TRAINER END -->
+
+>>>>>>> Stashed changes
     <!-- JADWAL KELAS START -->
     <section class="jadwal" id="jadwal">
       <h2>Jadwal Kelas</h2>
