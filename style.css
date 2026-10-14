@@ -5,6 +5,12 @@
   --font-color: #f3f4f4;
   --font-heading: "Oswald", Arial, sans-serif;
   --font-body: "Poppins", Arial, sans-serif;
+  
+  /* Tambahan untuk navbar & form (turunan dari warna di atas) */
+  --surface: #0B2B3A;
+  --line: rgba(95, 149, 152, 0.28);
+  --error: #FF8A80;
+  --nav-h: 72px; /* tinggi navbar, juga dipakai sebagai offset scroll */
 }
 
 * {
@@ -21,7 +27,7 @@ html {
 }
 
 body {
-  font-family: var(--font-main);
+  font-family: var(--font-body);
   background-color: var(--bg);
   color: #fff;
 }
@@ -32,7 +38,130 @@ body {
   max-width: 100%;
 }
 
+/* Reset di atas menghapus outline, jadi fokus keyboard dikembalikan di sini */
+:focus-visible {
+  outline: 2px solid var(--aksen);
+  outline-offset: 3px;
+}
+
+ul { list-style: none; }
+
+/* Input, select, dan button tidak otomatis mewarisi font, jadi dipaksa */
+input, select, button { font-family: inherit; }
+
 /* NAVBAR */
+h1 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+}
+h2 {
+  font-family: var(--font-heading);
+}
+p {
+  font-family: var(--font-body);
+}
+
+/* ---------- NAV (semua class diawali "nav-") ---------- */
+
+/* Menempel di atas; transparan dulu, jadi solid saat discroll (class .scrolled dari JS) */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-h);
+  z-index: 100;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.nav.scrolled {
+  background-color: rgba(6, 30, 41, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom-color: var(--line);
+}
+
+.nav-container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--font-color);
+}
+.nav-logo span { color: var(--aksen); }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+.nav-menu a {
+  font-size: 0.9rem;
+  color: var(--font-color);
+  padding: 0.4rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--aksen);
+  border-bottom-color: var(--aksen);
+}
+
+/* Hamburger: disembunyikan di desktop */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.nav-toggle span {
+  width: 26px;
+  height: 2px;
+  background-color: var(--font-color);
+  transition: transform 0.25s, opacity 0.2s;
+}
+/* Saat terbuka, tiga garis berubah jadi X */
+.nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .nav-toggle { display: flex; }
+
+  /* Menu jadi panel yang turun dari bawah navbar, tertutup secara default */
+  .nav-menu {
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.5rem 1.5rem 1.5rem;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--line);
+    display: none;
+  }
+  .nav-menu.open { display: flex; }
+
+  .nav-menu li { border-bottom: 1px solid var(--line); }
+  .nav-menu a { display: block; padding: 1rem 0; border-bottom: none; }
+}
+/* NAVBAR END*/
 
 /* HERO */
 
@@ -186,4 +315,220 @@ body {
   p {
     font-family: var(--font-body);
   }
+
+
+
+
 }
+
+/* INI BAGIAN CSS LAIN AFTER HERO BEFORE FORM JOIN */
+
+/* ---------- FORM JOIN MEMBERSHIP (semua class diawali "join") ---------- */
+
+.join {
+  /* supaya judul tidak tertutup navbar fixed saat klik link #join */
+  scroll-margin-top: var(--nav-h);
+  padding: 6rem 1.5rem;
+}
+
+/* Dua kolom: info di kiri, form di kanan */
+.join-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Kolom kiri */
+.join-info h2 {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--font-color);
+  margin-bottom: 1.2rem;
+}
+.join-info p {
+  max-width: 46ch;
+  line-height: 1.7;
+  color: rgba(243, 244, 244, 0.8);
+  margin-bottom: 2.5rem;
+}
+
+/* Nomor langkah dibuat dengan CSS counter */
+.join-info ol {
+  counter-reset: step;
+  border-left: 2px solid var(--line);
+}
+.join-info li {
+  counter-increment: step;
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+  padding: 0 0 1.8rem 2.2rem;
+}
+.join-info li:last-child { padding-bottom: 0; }
+.join-info li::before {
+  content: counter(step);
+  position: absolute;
+  left: -15px;
+  top: -2px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: var(--primary);
+  border: 2px solid var(--aksen);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+}
+.join-info strong {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--font-color);
+}
+.join-info li span { color: rgba(243, 244, 244, 0.7); line-height: 1.5; font-size: 0.9rem; }
+
+/* Kartu form */
+.join-form {
+  display: grid;
+  gap: 1.1rem;
+  padding: 2.2rem;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+/* Judul form di kiri, ikon hiasan kecil di kanan */
+.join-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.join-head h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--font-color);
+}
+/* Gambar punya latar putih, jadi dibuat seperti lencana kecil */
+.join-head img {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.join-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.1rem;
+}
+
+/* Semua label (nama field) memakai gaya yang sama */
+.join-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--font-color);
+}
+
+/* Semua input teks, tanggal, dan select memakai satu gaya */
+.join-form input:not([type="checkbox"]),
+.join-form select {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  font-size: 0.95rem;
+  color: var(--font-color);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  transition: border-color 0.2s;
+  color-scheme: dark; /* ikon kalender & dropdown ikut tema gelap */
+}
+.join-form input::placeholder { color: rgba(243, 244, 244, 0.4); }
+.join-form input:hover,
+.join-form select:hover,
+.join-form input:focus,
+.join-form select:focus { border-color: var(--aksen); }
+
+/* Pesan error di bawah field (kosong = tidak terlihat) */
+.join-form small {
+  min-height: 1.1em;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--error);
+}
+/* State error: class "invalid" ditambahkan JS ke <label> */
+.join-form label.invalid input,
+.join-form label.invalid select { border-color: var(--error); }
+
+/* Checkbox */
+.join-check {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  column-gap: 0.7rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.join-check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--aksen); }
+.join-check small { grid-column: 1 / -1; }
+
+/* Ringkasan paket */
+.join-summary {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1rem 1.1rem;
+  background-color: var(--bg);
+  border: 1px dashed var(--aksen);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.join-summary div { display: flex; justify-content: space-between; gap: 1rem; }
+.join-summary dt { color: rgba(243, 244, 244, 0.7); }
+.join-summary dd { color: var(--font-color); font-weight: 500; text-align: right; }
+/* Baris terakhir = total bayar */
+.join-summary div:last-child { padding-top: 0.6rem; border-top: 1px solid var(--line); }
+.join-summary div:last-child dd { font-family: var(--font-heading); font-size: 1.4rem; color: var(--aksen); }
+
+/* Tombol submit form join */
+.join-btn {
+  width: 100%;
+  padding: 0.95rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--bg);
+  background-color: var(--aksen);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.join-btn:hover { background-color: var(--font-color); }
+.join-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Pesan setelah submit: tersembunyi sampai JS menambah .success / .error */
+.join-msg { display: none; padding: 0.9rem 1rem; border-radius: 6px; font-size: 0.9rem; line-height: 1.5; }
+.join-msg.success { display: block; background-color: rgba(95, 149, 152, 0.18); border: 1px solid var(--aksen); color: var(--font-color); }
+.join-msg.error { display: block; background-color: rgba(255, 138, 128, 0.12); border: 1px solid var(--error); color: var(--error); }
+
+@media (max-width: 900px) {
+  .join { padding: 4.5rem 1.2rem; }
+  .join-container { grid-template-columns: 1fr; gap: 3rem; }
+}
+@media (max-width: 520px) {
+  .join-form { padding: 1.5rem 1.2rem; }
+  .join-row { grid-template-columns: 1fr; }
+}
+
+/* Hormati pengguna yang mematikan animasi di perangkatnya */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
