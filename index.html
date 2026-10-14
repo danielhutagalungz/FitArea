@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fit Area</title>
     <link rel="stylesheet" href="style.css" />
-<<<<<<< Updated upstream
-=======
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -32,7 +30,6 @@
         },
       };
     </script>
->>>>>>> Stashed changes
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -103,17 +100,12 @@
           Daftar hari ini, mulai latihan besok pagi.
         </p>
 
-<<<<<<< Updated upstream
-        <div class="hero-buttons">
-          <a href="#daftar" class="btn btn-primary">Daftar member</a>
-=======
         <div class="flex flex-wrap gap-4 mt-9">
           <a
             href="#membership"
             class="inline-block py-[14px] px-[30px] rounded-full font-body font-medium bg-aksen text-page transition-[background-color,color,border-color] duration-200 ease-[ease] hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-4 max-[480px]:flex-[1_1_100%] max-[480px]:text-center"
             >Daftar member</a
           >
->>>>>>> Stashed changes
         </div>
 
         <!-- Info singkat (ubah sesuai data gym Anda) -->
@@ -168,8 +160,6 @@
     </section>
     <!-- PROGRAM LATIHAN END -->
 
-<<<<<<< Updated upstream
-=======
     <!-- TRAINER START -->
     <section
       id="trainer"
@@ -386,7 +376,6 @@
     </section>
     <!-- TRAINER END -->
 
->>>>>>> Stashed changes
     <!-- JADWAL KELAS START -->
     <section class="jadwal" id="jadwal">
       <h2>Jadwal Kelas</h2>
@@ -428,7 +417,162 @@
     </section>
     <!-- JADWAL KELAS END -->
 
+    <!-- MEMBERSHIP START -->
+    <section class="membership" id="membership">
+      <h2>Paket Membership</h2>
+      <p class="sub">Pilih paket yang sesuai dengan komitmen latihanmu</p>
+
+      <div class="membership-grid">
+      <!-- Basic -->
+      <article class="paket-card">
+      <h3>Basic</h3>
+      <p class="paket-harga">Rp250.000 <span>/ 1 bulan</span></p>
+        <ul>
+          <li>Akses gym 05.00–23.00</li>
+          <li>Locker &amp; shower</li>
+          <li>Booking kelas grup</li>
+        </ul>
+      <a href="#join" class="btn-paket" data-paket="1">Pilih paket</a>
+      </article>
+
+      <!-- Silver -->
+      <article class="paket-card">
+        <h3>Silver</h3>
+        <p class="paket-harga">Rp650.000 <span>/ 3 bulan</span></p>
+        <ul>
+          <li>Semua fasilitas Basic</li>
+          <li>Hemat sekitar 13%</li>
+          <li>1x sesi konsultasi trainer</li>
+        </ul>
+        <a href="#join" class="btn-paket" data-paket="2">Pilih paket</a>
+      </article>
+
+      <!-- Gold (paling populer) -->
+      <article class="paket-card populer">
+        <span class="paket-badge">Paling populer</span>
+        <h3>Gold</h3>
+        <p class="paket-harga">Rp1.200.000 <span>/ 6 bulan</span></p>
+        <ul>
+          <li>Semua fasilitas Silver</li>
+          <li>Hemat sekitar 20%</li>
+          <li>3x sesi personal training</li>
+        </ul>
+        <a href="#join" class="btn-paket" data-paket="3">Pilih paket</a>
+      </article>
+
+      <!-- Platinum -->
+      <article class="paket-card">
+        <h3>Platinum</h3>
+        <p class="paket-harga">Rp2.200.000 <span>/ 12 bulan</span></p>
+        <ul>
+          <li>Semua fasilitas Gold</li>
+          <li>Hemat sekitar 27%</li>
+          <li>6x sesi personal training</li>
+        </ul>
+        <a href="#join" class="btn-paket" data-paket="4">Pilih paket</a>
+      </article>
+      </div>
+    </section>
+    <!-- MEMBERSHIP END -->
+
     <!-- SECTION PROGRAM LATIHAN, TRAINER, JADWAL KELAS, MEMBERSHIP, TENGOK INI COY -->
+
+
+    <!-- BMI CALCULATOR START -->
+    <section class="bmi" id="bmi">
+      <h2>Kalkulator BMI</h2>
+      <p class="sub">Cek indeks massa tubuhmu sebelum menentukan program latihan</p>
+
+      <div class="bmi-container">
+        <!-- Kiri: form input -->
+        <form class="bmi-form" id="bmiForm" novalidate>
+          <h3>Data tubuhmu</h3>
+
+          <label
+            >Tinggi badan
+            <span class="bmi-field">
+              <input
+                type="number"
+                id="bmiTinggi"
+                name="tinggi"
+                inputmode="decimal"
+                step="0.1"
+                placeholder="Contoh: 170"
+              />
+              <em>cm</em>
+            </span>
+            <small></small>
+          </label>
+
+          <label
+            >Berat badan
+            <span class="bmi-field">
+              <input
+                type="number"
+                id="bmiBerat"
+                name="berat"
+                inputmode="decimal"
+                step="0.1"
+                placeholder="Contoh: 65"
+              />
+              <em>kg</em>
+            </span>
+            <small></small>
+          </label>
+
+          <div class="bmi-actions">
+            <button type="submit" class="join-btn">Hitung BMI</button>
+            <button type="button" class="bmi-reset" id="bmiReset">Reset</button>
+          </div>
+
+          <p class="bmi-catatan">
+            Rumus: berat (kg) &divide; tinggi (m)&sup2;. Hasil ini perkiraan
+            untuk orang dewasa dan bukan diagnosis medis.
+          </p>
+        </form>
+
+        <!-- Kanan: hasil -->
+        <div class="bmi-hasil" id="bmiHasil" data-kategori="" aria-live="polite">
+          <p class="bmi-label">BMI kamu</p>
+          <p class="bmi-angka" id="bmiAngka">--</p>
+          <span class="bmi-kategori" id="bmiKategori">Belum dihitung</span>
+
+          <!-- Gauge: 4 segmen sesuai kategori, penanda digeser oleh JS -->
+          <div class="bmi-gauge" aria-hidden="true">
+            <div class="bmi-bar">
+              <span class="seg-kurang"></span>
+              <span class="seg-normal"></span>
+              <span class="seg-berlebih"></span>
+              <span class="seg-obesitas"></span>
+            </div>
+            <div class="bmi-marker" id="bmiMarker"></div>
+            <div class="bmi-skala">
+              <span style="left: 14%">18,5</span>
+              <span style="left: 40%">25</span>
+              <span style="left: 60%">30</span>
+            </div>
+          </div>
+
+          <p class="bmi-pesan" id="bmiPesan">
+            Isi tinggi dan berat badan, lalu tekan Hitung BMI.
+          </p>
+
+          <dl class="bmi-detail">
+            <div>
+              <dt>Berat ideal</dt>
+              <dd id="bmiIdeal">-</dd>
+            </div>
+            <div>
+              <dt>Target</dt>
+              <dd id="bmiSelisih">-</dd>
+            </div>
+          </dl>
+
+          <a href="#program" class="btn btn-primary">Lihat program latihan</a>
+        </div>
+      </div>
+    </section>
+    <!-- BMI CALCULATOR END -->
 
     <!-- JOIN MEMBERSHIP START -->
     <section class="join" id="join">
@@ -605,10 +749,158 @@
     </section>
     <!-- JOIN MEMBERSHIP END -->
 
-    <!-- DISINI BARU BMI CALCULATOR, FAQ, FOOTER -->
+    <!-- DISINI BARU FAQ, FOOTER -->
+    <!-- section Faq -->
+    <!-- ================= SECTION FAQ (TAILWIND) ================= -->
+    <section id="faq" class="max-w-[1000px] mx-auto py-20 px-5 scroll-mt-[var(--nav-h)]">
+      <div class="container mx-auto">
+        <h2 class="text-center text-3xl sm:text-4xl font-bold uppercase tracking-wider text-[var(--font-color)] font-['Oswald'] relative after:content-[''] after:block after:w-[56px] after:h-[3px] after:mx-auto after:mt-3.5 after:bg-[var(--aksen)] after:rounded-sm">
+          Pertanyaan Umum (FAQ)
+        </h2>
+        <p class="text-center text-[var(--font-sekunder)] mt-4 mb-8 text-sm sm:text-base">
+          Temukan jawaban untuk pertanyaan yang sering ditanyakan mengenai Fitarea GYM.
+        </p>
+
+        <div class="accordion flex flex-col gap-3">
+          <!-- Pertanyaan 1 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Berapa jam operasional FitArea GYM?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                FitArea GYM buka setiap hari Senin – Sabtu mulai pukul 05.00 hingga 23.00 WIB. Untuk hari Minggu dan Libur Nasional buka pukul 08.00 hingga 18.00 WIB.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 2 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Bagaimana cara mendaftar keanggotaan (membership)?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Kamu bisa mendaftar secara online melalui formulir "Join Membership" pada website ini atau mendaftar langsung di resepsionis FitArea GYM.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 3 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Fasilitas apa saja yang tersedia di FitArea GYM?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Fasilitas kami meliputi area angkat beban lengkap, studio kelas (Yoga, Zumba, HIIT), loker pribadi, shower room, dan sesi konsultasi awal dengan personal trainer.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 4 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Apakah saya bisa membatalkan atau membekukan membership?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Bisa. Pembekuan (freeze) membership dapat diajukan maksimal 30 hari dalam setahun dengan konfirmasi H-3 ke staf admin FitArea.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 5 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Apakah tersedia Personal Trainer untuk pemula?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Tentu saja! Trainer profesional bersertifikat kami siap membimbing teknik latihan dasar yang aman, menyusun program kustom, serta mendampingi target kebugaranmu.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pertanyaan 6 -->
+          <div class="accordion-item bg-[var(--card)] border border-[var(--line)] rounded-xl overflow-hidden transition-all duration-300 hover:bg-[var(--card-hover)] hover:border-[var(--aksen)]">
+            <button class="accordion-header w-full py-[18px] px-[20px] bg-transparent text-[var(--font-color)] font-medium text-left flex justify-between items-center cursor-pointer transition-colors duration-200 hover:text-[var(--aksen)]" type="button">
+              <span>Apakah disediakan loker dan handuk gratis?</span>
+              <span class="accordion-icon text-[var(--aksen)] text-xs transition-transform duration-300">&#9660;</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden bg-[var(--surface)] px-[20px] transition-all duration-300 ease-out">
+              <p class="text-[var(--font-color)] text-opacity-85 text-sm sm:text-base leading-relaxed py-4">
+                Locker harian gratis dapat digunakan oleh seluruh member selama jam latihan. Peminjaman handuk steril disediakan khusus untuk paket membership tertentu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER START (TAILWIND) -->
+    <footer class="site-footer bg-[var(--surface)] text-[var(--font-color)] pt-14 border-t border-[var(--line)]">
+      <div class="footer-container max-w-[1100px] mx-auto px-5 pb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand & deskripsi -->
+        <div class="footer-col brand-col">
+          <h3 class="footer-logo font-['Oswald'] text-3xl font-bold text-[var(--font-color)] mb-3">
+            Fit<span class="text-[var(--aksen)]">Area</span>
+          </h3>
+          <p class="text-[var(--font-color)] text-opacity-75 text-sm leading-relaxed">
+            Pusat kebugaran modern dengan fasilitas lengkap dan trainer berpengalaman untuk membantu mencapai bentuk tubuh idealmu.
+          </p>
+        </div>
+
+        <!-- Jam Operasional -->
+        <div class="footer-col">
+          <h4 class="font-['Oswald'] text-lg font-medium tracking-wide uppercase text-[var(--aksen)] mb-4">
+            Jam Operasional
+          </h4>
+          <ul class="footer-info space-y-2.5 text-sm text-[var(--font-color)] text-opacity-80">
+            <li><span class="font-semibold text-[var(--font-color)]">Senin – Sabtu:</span> 05.00 – 23.00 WIB</li>
+            <li><span class="font-semibold text-[var(--font-color)]">Minggu & Libur:</span> 08.00 – 18.00 WIB</li>
+          </ul>
+        </div>
+
+        <!-- Kontak Kami -->
+        <div class="footer-col">
+          <h4 class="font-['Oswald'] text-lg font-medium tracking-wide uppercase text-[var(--aksen)] mb-4">
+            Kontak Kami
+          </h4>
+          <ul class="footer-info space-y-2.5 text-sm text-[var(--font-color)] text-opacity-80">
+            <li><strong class="font-semibold text-[var(--font-color)]">Telepon:</strong> +62 822-2658-5215</li>
+            <li><strong class="font-semibold text-[var(--font-color)]">Email:</strong> fitArea@gmail.com</li>
+            <li><strong class="font-semibold text-[var(--font-color)]">WhatsApp:</strong> 0822-2658-5215</li>
+          </ul>
+        </div>
+
+        <!-- Alamat -->
+        <div class="footer-col">
+          <h4 class="font-['Oswald'] text-lg font-medium tracking-wide uppercase text-[var(--aksen)] mb-4">
+            Alamat GYM
+          </h4>
+          <p class="text-[var(--font-color)] text-opacity-75 text-sm leading-relaxed">
+            Jl. Dr. Mansyur No. 99, Kampus USU, Medan, Sumatera Utara 20155
+          </p>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-bottom bg-[var(--bg)] text-center py-5 text-xs text-[var(--font-sekunder)] border-t border-[var(--line)]">
+        <p>&copy; 2026 FitArea GYM.</p>
+      </div>
+    </footer>
+    <!-- FOOTER END -->
 
     <script src="script.js"></script>
     <script src="jadwal.js"></script>
     <script src="program.js"></script>
+    <script src="membership.js"></script>
+    <script src="bmi.js"></script>
   </body>
 </html>

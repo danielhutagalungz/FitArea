@@ -126,18 +126,33 @@ p {
   gap: 1.6rem;
 }
 .nav-menu a {
+  position: relative;
+  display: inline-block;
   font-size: 0.9rem;
   color: var(--font-color);
   padding: 0.4rem 0;
-  border-bottom: 2px solid transparent;
-  transition:
-    color 0.2s,
-    border-color 0.2s;
+  transition: color 0.2s;
+}
+/* Garis bawah: awalnya lebar 0 di tengah, lalu melebar ke kiri & kanan */
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: var(--aksen);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
 }
 .nav-menu a:hover,
 .nav-menu a.active {
   color: var(--aksen);
-  border-bottom-color: var(--aksen);
+}
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+  transform: scaleX(1);
 }
 
 /* Hamburger: disembunyikan di desktop */
@@ -200,87 +215,15 @@ p {
   .nav-menu a {
     display: block;
     padding: 1rem 0;
-    border-bottom: none;
+  }
+  .nav-menu a::after {
+    display: none;
   }
 }
 /* NAVBAR END*/
 
-<<<<<<< Updated upstream
-/* HERO */
-
-.hero {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* kiri = foto, kanan = teks */
-  min-height: 90vh;
-}
-
-/* Gradasi di dasar hero: foto/latar memudar halus ke warna background
-   website, jadi tidak ada garis potong tegas ke section berikutnya. */
-.hero::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(to bottom, transparent, var(--bg));
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Kiri: foto. Gradient di tepi kanan membuat foto
-   menyatu halus dengan warna latar sisi teks.
-   Gradient tipis di atas menjaga navbar transparan tetap terbaca. */
-.hero-photo {
-  background:
-    linear-gradient(to bottom, rgba(6, 30, 41, 0.75), transparent 25%),
-    linear-gradient(to right, transparent 55%, var(--bg)),
-    url("gym3.jpeg") center 40% / cover no-repeat;
-}
-
-/* Kanan: teks. Padding atas = tinggi navbar + jarak,
-   supaya judul tidak menabrak navbar fixed. */
-.hero-text {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: calc(var(--nav-h) + 48px) 8vw 96px 32px;
-}
-
-.hero-text h1 {
-  font-family: var(--font-heading);
-  font-size: clamp(3.5rem, 8vw, 7rem);
-  font-weight: 700;
-  line-height: 0.95;
-  text-transform: uppercase;
-  color: var(--font-color);
-}
-
-.hero-tagline {
-  margin-top: 20px;
-  font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
-  font-weight: 400;
-  color: var(--aksen);
-}
-
-.hero-desc {
-  margin-top: 16px;
-  max-width: 460px;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--font-color);
-  opacity: 0.85;
-  font-family: var(--font-body);
-}
-=======
 /* HERO sudah dipindah ke Tailwind (lihat <section id="hero"> di index.html).
    Aturan .btn di bawah tetap dipertahankan karena masih dipakai section BMI. */
->>>>>>> Stashed changes
 
 /* Tombol */
 .btn {
@@ -319,83 +262,6 @@ p {
   border-color: var(--primary);
 }
 
-<<<<<<< Updated upstream
-/* Info singkat */
-.hero-info {
-  display: flex;
-  flex-wrap: wrap; /* boleh turun baris di layar sempit */
-  gap: 20px 32px;
-  margin-top: 48px;
-}
-
-.hero-info div {
-  border-left: 2px solid var(--aksen);
-  padding-left: 14px;
-}
-
-.hero-info dt {
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
-.hero-info dd {
-  margin-top: 4px;
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-/* Layar kecil: foto jadi latar penuh, tulisan "Fit Area" menimpa di atasnya.
-   Foto dan teks ditaruh di sel grid yang sama (grid-area: 1 / 1), jadi
-   saling menumpuk. Foto di belakang, teks di depan (z-index: 2). */
-@media (max-width: 800px) {
-  .hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    min-height: 100vh;
-    min-height: 100svh; /* tinggi layar HP yang sebenarnya (tanpa address bar) */
-  }
-
-  .hero-photo,
-  .hero-text {
-    grid-area: 1 / 1;
-  }
-
-  /* Gradasi gelap (atas pekat untuk navbar, bawah pekat untuk
-     menyatu ke section berikutnya) supaya teks tetap terbaca. */
-  .hero-photo {
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(6, 30, 41, 0.85),
-        rgba(6, 30, 41, 0.55) 35%,
-        rgba(6, 30, 41, 0.92)
-      ),
-      url("gym3.jpeg") center / cover no-repeat;
-  }
-
-  .hero-text {
-    padding: calc(var(--nav-h) + 32px) 24px 96px;
-  }
-
-  .hero::after {
-    height: 96px;
-  }
-
-  .hero-info {
-    gap: 16px 24px;
-  }
-}
-
-/* HP kecil: tombol memenuhi lebar layar agar mudah ditekan */
-@media (max-width: 480px) {
-  .hero-buttons .btn {
-    flex: 1 1 100%;
-    text-align: center;
-  }
-}
-
-=======
->>>>>>> Stashed changes
 /* INI BAGIAN CSS LAIN AFTER HERO BEFORE FORM JOIN */
 
 /* ---------- FORM JOIN MEMBERSHIP (semua class diawali "join") ---------- */
@@ -434,7 +300,7 @@ p {
 /* Nomor langkah dibuat dengan CSS counter */
 .join-info ol {
   counter-reset: step;
-  border-left: 2px solid var(--line);
+  padding-left: 2px; /* menggantikan lebar garis lama, posisi teks tetap */
 }
 .join-info li {
   counter-increment: step;
@@ -446,7 +312,19 @@ p {
 .join-info li:last-child {
   padding-bottom: 0;
 }
+/* Garis penghubung: dari pusat nomor ini ke pusat nomor berikutnya.
+   Langkah terakhir tidak punya garis, jadi tidak ada sisa di bawahnya. */
+.join-info li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  width: 2px;
+  top: 12px;
+  bottom: -12px;
+  background-color: var(--line);
+}
 .join-info li::before {
+  z-index: 1; /* lingkaran menutupi ujung garis */
   content: counter(step);
   position: absolute;
   left: -15px;
@@ -1267,9 +1145,6 @@ p {
     opacity: 1;
     transform: none;
   }
-<<<<<<< Updated upstream
-}
-=======
 }
 
 /* =========================================================
@@ -1786,4 +1661,3 @@ p {
 
 
 
->>>>>>> Stashed changes
