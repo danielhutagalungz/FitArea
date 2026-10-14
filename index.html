@@ -392,11 +392,108 @@
     </section>
     <!-- JOIN MEMBERSHIP END -->
 
-    <!-- DISINI BARU BMI CALCULATOR, FAQ, FOOTER -->
+    <!-- BMI CALCULATOR START -->
+    <section class="bmi" id="bmi">
+      <h2>Kalkulator BMI</h2>
+      <p class="sub">Cek indeks massa tubuhmu sebelum menentukan program latihan</p>
+
+      <div class="bmi-container">
+        <!-- Kiri: form input -->
+        <form class="bmi-form" id="bmiForm" novalidate>
+          <h3>Data tubuhmu</h3>
+
+          <label
+            >Tinggi badan
+            <span class="bmi-field">
+              <input
+                type="number"
+                id="bmiTinggi"
+                name="tinggi"
+                inputmode="decimal"
+                step="0.1"
+                placeholder="Contoh: 170"
+              />
+              <em>cm</em>
+            </span>
+            <small></small>
+          </label>
+
+          <label
+            >Berat badan
+            <span class="bmi-field">
+              <input
+                type="number"
+                id="bmiBerat"
+                name="berat"
+                inputmode="decimal"
+                step="0.1"
+                placeholder="Contoh: 65"
+              />
+              <em>kg</em>
+            </span>
+            <small></small>
+          </label>
+
+          <div class="bmi-actions">
+            <button type="submit" class="join-btn">Hitung BMI</button>
+            <button type="button" class="bmi-reset" id="bmiReset">Reset</button>
+          </div>
+
+          <p class="bmi-catatan">
+            Rumus: berat (kg) &divide; tinggi (m)&sup2;. Hasil ini perkiraan
+            untuk orang dewasa dan bukan diagnosis medis.
+          </p>
+        </form>
+
+        <!-- Kanan: hasil -->
+        <div class="bmi-hasil" id="bmiHasil" data-kategori="" aria-live="polite">
+          <p class="bmi-label">BMI kamu</p>
+          <p class="bmi-angka" id="bmiAngka">--</p>
+          <span class="bmi-kategori" id="bmiKategori">Belum dihitung</span>
+
+          <!-- Gauge: 4 segmen sesuai kategori, penanda digeser oleh JS -->
+          <div class="bmi-gauge" aria-hidden="true">
+            <div class="bmi-bar">
+              <span class="seg-kurang"></span>
+              <span class="seg-normal"></span>
+              <span class="seg-berlebih"></span>
+              <span class="seg-obesitas"></span>
+            </div>
+            <div class="bmi-marker" id="bmiMarker"></div>
+            <div class="bmi-skala">
+              <span style="left: 14%">18,5</span>
+              <span style="left: 40%">25</span>
+              <span style="left: 60%">30</span>
+            </div>
+          </div>
+
+          <p class="bmi-pesan" id="bmiPesan">
+            Isi tinggi dan berat badan, lalu tekan Hitung BMI.
+          </p>
+
+          <dl class="bmi-detail">
+            <div>
+              <dt>Berat ideal</dt>
+              <dd id="bmiIdeal">-</dd>
+            </div>
+            <div>
+              <dt>Target</dt>
+              <dd id="bmiSelisih">-</dd>
+            </div>
+          </dl>
+
+          <a href="#program" class="btn btn-primary">Lihat program latihan</a>
+        </div>
+      </div>
+    </section>
+    <!-- BMI CALCULATOR END -->
+
+    <!-- DISINI BARU FAQ, FOOTER -->
 
     <script src="script.js"></script>
     <script src="jadwal.js"></script>
     <script src="program.js"></script>
     <script src="membership.js"></script>
+    <script src="bmi.js"></script>
   </body>
 </html>
