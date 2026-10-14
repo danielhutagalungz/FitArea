@@ -2033,7 +2033,43 @@ p {
   transition: transform 0.3s ease; /* Animasi mulus saat panah berputar */
 }
 
+/* border berubah & panah berputar 180 derajat */
+.accordion-item.active {
+  border-color: var(--aksen);
+  background-color: var(--card-hover);
+}
 
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg); /* Memutar panah ke atas saat jawaban terbuka */
+}
+
+/* Wadah konten jawaban (tertutup: tinggi 0 & tersembunyi) */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden; /* Menyembunyikan teks jawaban saat tertutup */
+  transition:
+    max-height 0.35s ease-out,
+    padding 0.35s ease; /* Transisi animasi sliding saat membongkar jawaban */
+  background-color: var(--surface);
+  padding: 0 20px;
+}
+
+/* Tampilan konten jawaban saat item FAQ aktif / terbuka */
+.accordion-item.active .accordion-content {
+  padding: 16px 20px 20px;
+  max-height: 200px; /* Batas tinggi maks agar transisi slide-down berjalan mulus */
+  border-top: 1px solid var(--line); /* Garis pembatas antara pertanyaan & jawaban */
+}
+
+/* Teks paragraf di dalam jawaban */
+.accordion-content p {
+  color: rgba(243, 244, 244, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Responsif untuk layar HP (kurang dari 600px) */
+@media (max-width: 600px) {
 
 
 
