@@ -1,8 +1,8 @@
 :root {
-  --primary: #1D546D;
-  --bg: #061E29;
-  --aksen: #5F9598;
-  --font-color: #F3F4F4;
+  --primary: #1d546d;
+  --bg: #061e29;
+  --aksen: #5f9598;
+  --font-color: #f3f4f4;
   --font-heading: "Oswald", Arial, sans-serif;
   --font-body: "Poppins", Arial, sans-serif;
 }
@@ -26,19 +26,164 @@ body {
   color: #fff;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   max-width: 100%;
 }
 
 /* NAVBAR */
-h1 {
-  font-family: var(--font-heading);
-  font-weight: 900;
+
+/* HERO */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* kiri = foto, kanan = teks */
+  min-height: 90vh;
 }
-h2 {
-  font-family: var(--font-heading);
+
+/* Kiri: foto. Gradient di tepi kanan membuat foto
+   menyatu halus dengan warna latar sisi teks. */
+.hero-photo {
+  background:
+    linear-gradient(to right, transparent 55%, var(--bg)),
+    url("gym3.jpeg") center 40% / cover no-repeat;
 }
-p {
+
+/* Kanan: teks */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 64px 8vw 64px 32px;
+}
+
+.hero-text h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--font-color);
+}
+
+.hero-tagline {
+  margin-top: 20px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 400;
+  color: var(--aksen);
+}
+
+.hero-desc {
+  margin-top: 16px;
+  max-width: 460px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--font-color);
+  opacity: 0.85;
   font-family: var(--font-body);
+}
+
+/* Tombol */
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--font-color);
+  outline-offset: 4px;
+}
+
+.btn-primary {
+  background-color: var(--aksen);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background-color: var(--font-color);
+}
+
+.btn-outline {
+  border: 2px solid var(--aksen);
+  color: var(--font-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Info singkat */
+.hero-info {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.hero-info div {
+  border-left: 2px solid var(--aksen);
+  padding-left: 14px;
+}
+
+.hero-info dt {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.hero-info dd {
+  margin-top: 4px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Layar kecil: foto di atas, teks di bawah */
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero-photo {
+    min-height: 40vh;
+    background:
+      linear-gradient(to bottom, transparent 50%, var(--bg)),
+      url("gym2.jpg") center 40% / cover no-repeat;
+  }
+
+  .hero-text {
+    padding: 8px 24px 56px;
+  }
+
+  .hero-info {
+    gap: 20px;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-weight: 900;
+  }
+  h2 {
+    font-family: var(--font-heading);
+  }
+  p {
+    font-family: var(--font-body);
+  }
 }
