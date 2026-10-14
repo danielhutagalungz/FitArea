@@ -1,28 +1,28 @@
 // 1. Data jadwal (array of object)
 const dataJadwal = [
-  { hari: "Senin",  jam: "06:00 - 07:00", kelas: "Yoga",              trainer: "Dewi Anggraini", durasi: "60 menit" },
-  { hari: "Senin",  jam: "17:00 - 18:00", kelas: "HIIT",              trainer: "Rafi Pratama",   durasi: "60 menit" },
-  { hari: "Senin",  jam: "19:00 - 20:00", kelas: "Strength Training", trainer: "Bima Saputra",   durasi: "60 menit" },
+  { hari: "Senin",  jam: "06:00 - 07:00", kelas: "Yoga",              trainer: "pebrian omaigod", durasi: "60 menit" },
+  { hari: "Senin",  jam: "17:00 - 18:00", kelas: "HIIT",              trainer: "rapli kelas",   durasi: "60 menit" },
+  { hari: "Senin",  jam: "19:00 - 20:00", kelas: "Strength Training", trainer: "danil kudanil",   durasi: "60 menit" },
 
-  { hari: "Selasa", jam: "07:00 - 08:00", kelas: "Zumba",             trainer: "Sinta Maharani", durasi: "60 menit" },
-  { hari: "Selasa", jam: "18:00 - 19:00", kelas: "Boxing",            trainer: "Andre Wijaya",   durasi: "60 menit" },
-  { hari: "Selasa", jam: "19:30 - 20:30", kelas: "Cardio",            trainer: "Laras Putri",    durasi: "60 menit" },
+  { hari: "Selasa", jam: "07:00 - 08:00", kelas: "Zumba",             trainer: "prans baisikel", durasi: "60 menit" },
+  { hari: "Selasa", jam: "18:00 - 19:00", kelas: "Boxing",            trainer: "adit bas",   durasi: "60 menit" },
+  { hari: "Selasa", jam: "19:30 - 20:30", kelas: "Cardio",            trainer: "bang kris",    durasi: "60 menit" },
 
-  { hari: "Rabu",   jam: "06:00 - 07:00", kelas: "Cardio",            trainer: "Laras Putri",    durasi: "60 menit" },
-  { hari: "Rabu",   jam: "17:30 - 18:30", kelas: "Yoga",              trainer: "Dewi Anggraini", durasi: "60 menit" },
-  { hari: "Rabu",   jam: "19:00 - 20:00", kelas: "HIIT",              trainer: "Rafi Pratama",   durasi: "60 menit" },
+  { hari: "Rabu",   jam: "06:00 - 07:00", kelas: "Cardio",            trainer: "bang kris",    durasi: "60 menit" },
+  { hari: "Rabu",   jam: "17:30 - 18:30", kelas: "Yoga",              trainer: "pebrian omaigod", durasi: "60 menit" },
+  { hari: "Rabu",   jam: "19:00 - 20:00", kelas: "HIIT",              trainer: "rapli kelas",   durasi: "60 menit" },
 
-  { hari: "Kamis",  jam: "07:00 - 08:00", kelas: "Strength Training", trainer: "Bima Saputra",   durasi: "60 menit" },
-  { hari: "Kamis",  jam: "18:00 - 19:00", kelas: "Zumba",             trainer: "Sinta Maharani", durasi: "60 menit" },
-  { hari: "Kamis",  jam: "19:30 - 20:30", kelas: "Boxing",            trainer: "Andre Wijaya",   durasi: "60 menit" },
+  { hari: "Kamis",  jam: "07:00 - 08:00", kelas: "Strength Training", trainer: "danil kudanil",   durasi: "60 menit" },
+  { hari: "Kamis",  jam: "18:00 - 19:00", kelas: "Zumba",             trainer: "prans baisikel", durasi: "60 menit" },
+  { hari: "Kamis",  jam: "19:30 - 20:30", kelas: "Boxing",            trainer: "adit bas",   durasi: "60 menit" },
 
-  { hari: "Jumat",  jam: "06:00 - 07:00", kelas: "HIIT",              trainer: "Rafi Pratama",   durasi: "60 menit" },
-  { hari: "Jumat",  jam: "17:00 - 18:00", kelas: "Yoga",              trainer: "Dewi Anggraini", durasi: "60 menit" },
-  { hari: "Jumat",  jam: "19:00 - 20:00", kelas: "Cardio",            trainer: "Laras Putri",    durasi: "60 menit" },
+  { hari: "Jumat",  jam: "06:00 - 07:00", kelas: "HIIT",              trainer: "rapli kelas",   durasi: "60 menit" },
+  { hari: "Jumat",  jam: "17:00 - 18:00", kelas: "Yoga",              trainer: "pebrian omaigod", durasi: "60 menit" },
+  { hari: "Jumat",  jam: "19:00 - 20:00", kelas: "Cardio",            trainer: "bang kris",    durasi: "60 menit" },
 
-  { hari: "Sabtu",  jam: "08:00 - 09:00", kelas: "Zumba",             trainer: "Sinta Maharani", durasi: "60 menit" },
-  { hari: "Sabtu",  jam: "09:30 - 10:30", kelas: "Boxing",            trainer: "Andre Wijaya",   durasi: "60 menit" },
-  { hari: "Sabtu",  jam: "11:00 - 12:00", kelas: "Strength Training", trainer: "Bima Saputra",   durasi: "60 menit" }
+  { hari: "Sabtu",  jam: "08:00 - 09:00", kelas: "Zumba",             trainer: "prans baisikel", durasi: "60 menit" },
+  { hari: "Sabtu",  jam: "09:30 - 10:30", kelas: "Boxing",            trainer: "adit bas",   durasi: "60 menit" },
+  { hari: "Sabtu",  jam: "11:00 - 12:00", kelas: "Strength Training", trainer: "danil kudanil",   durasi: "60 menit" }
 ];
 
 // 2. Ambil elemen dari HTML
