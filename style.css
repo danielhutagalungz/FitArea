@@ -2071,7 +2071,46 @@ p {
 /* Responsif untuk layar HP (kurang dari 600px) */
 @media (max-width: 600px) {
 
+/* Footer */
+/*-----------  */
+/* Area latar utama footer */
+.site-footer {
+  background-color: var(--surface);
+  color: var(--font-color);
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+}
 
+/* Kontainer grid 4 kolom untuk bagian footer */
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+/* Judul logo brand di footer */
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--font-color);
+  margin-bottom: 12px;
+}
+
+/* Warna aksen untuk kata 'Area' pada logo */
+.footer-logo span {
+  color: var(--aksen);
+}
+
+/* Deskripsi singkat di bawah logo */
+.footer-col p {
+  color: rgba(243, 244, 244, 0.75);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
 
 
 
