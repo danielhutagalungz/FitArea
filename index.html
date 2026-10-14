@@ -84,6 +84,84 @@
     </section>
     <!-- hero end -->
 
+    <!-- PROGRAM LATIHAN START -->
+    <section class="program" id="program">
+      <h2>Program Latihan</h2>
+      <p class="sub">Temukan kelas yang cocok dengan tujuan latihanmu</p>
+
+      <!-- Pencarian -->
+      <div class="program-search" role="search">
+        <label for="cariProgram" class="sr-only">Cari program latihan</label>
+        <svg
+          class="search-icon"
+          viewBox="0 0 24 24"
+          width="20"
+          height="20"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2" />
+          <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <input
+          type="search"
+          id="cariProgram"
+          placeholder="Cari program, contoh: yoga, bakar kalori, otot..."
+          autocomplete="off"
+        />
+        <button type="button" id="hapusCari" class="search-clear" aria-label="Hapus pencarian" hidden>&times;</button>
+      </div>
+
+      <p class="program-info" id="programInfo" aria-live="polite"></p>
+
+      <div class="program-grid" id="programGrid"></div>
+
+      <p class="program-kosong" id="programKosong" hidden>
+        Program tidak ditemukan. Coba kata kunci lain.
+      </p>
+    </section>
+    <!-- PROGRAM LATIHAN END -->
+
+    <!-- JADWAL KELAS START -->
+    <section class="jadwal" id="jadwal">
+      <h2>Jadwal Kelas</h2>
+      <p class="sub">Pilih hari untuk melihat kelas yang tersedia</p>
+
+      <div class="filter" id="filter">
+        <button class="aktif" data-hari="Semua">Semua</button>
+        <button data-hari="Senin">Senin</button>
+        <button data-hari="Selasa">Selasa</button>
+        <button data-hari="Rabu">Rabu</button>
+        <button data-hari="Kamis">Kamis</button>
+        <button data-hari="Jumat">Jumat</button>
+        <button data-hari="Sabtu">Sabtu</button>
+      </div>
+
+      <div class="tabel-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Hari</th>
+              <th>Jam</th>
+              <th>Kelas</th>
+              <th>Trainer</th>
+              <th>Durasi</th>
+            </tr>
+          </thead>
+          <tbody id="isi-jadwal"></tbody>
+        </table>
+      </div>
+
+      <div class="area-toggle">
+        <button class="toggle-jadwal" id="toggle-jadwal" type="button">
+          <span class="teks-tombol">Lihat Selengkapnya</span>
+          <span class="panah">&#9660;</span>
+        </button>
+      </div>
+
+      <p class="info-jumlah" id="info-jumlah"></p>
+    </section>
+    <!-- JADWAL KELAS END -->
+
     <!-- SECTION PROGRAM LATIHAN, TRAINER, JADWAL KELAS, MEMBERSHIP, TENGOK INI COY -->
 
     <!-- JOIN MEMBERSHIP START -->
@@ -264,5 +342,7 @@
     <!-- DISINI BARU BMI CALCULATOR, FAQ, FOOTER -->
 
     <script src="script.js"></script>
+    <script src="jadwal.js"></script>
+    <script src="program.js"></script>
   </body>
 </html>

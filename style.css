@@ -3,13 +3,19 @@
   --bg: #061e29;
   --aksen: #5f9598;
   --font-color: #f3f4f4;
-  --font-heading: "Oswald", Arial, sans-serif;
-  --font-body: "Poppins", Arial, sans-serif;
-  
+  --font-heading: "Oswald", sans-serif;
+  --font-body: "Roboto", Arial, sans-serif;
+
+  /* tambahan untuk section jadwal */
+  --card: #0c2c3b;
+  --card-hover: #123a4d;
+  --garis: #1d546d;
+  --font-sekunder: #a9bcc4;
+
   /* Tambahan untuk navbar & form (turunan dari warna di atas) */
-  --surface: #0B2B3A;
+  --surface: #0b2b3a;
   --line: rgba(95, 149, 152, 0.28);
-  --error: #FF8A80;
+  --error: #ff8a80;
   --nav-h: 72px; /* tinggi navbar, juga dipakai sebagai offset scroll */
 }
 
@@ -38,16 +44,28 @@ body {
   max-width: 100%;
 }
 
+/* JADWAL KELAS */
+.jadwal {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
 /* Reset di atas menghapus outline, jadi fokus keyboard dikembalikan di sini */
 :focus-visible {
   outline: 2px solid var(--aksen);
   outline-offset: 3px;
 }
 
-ul { list-style: none; }
+ul {
+  list-style: none;
+}
 
 /* Input, select, dan button tidak otomatis mewarisi font, jadi dipaksa */
-input, select, button { font-family: inherit; }
+input,
+select,
+button {
+  font-family: inherit;
+}
 
 /* NAVBAR */
 h1 {
@@ -72,7 +90,9 @@ p {
   height: var(--nav-h);
   z-index: 100;
   border-bottom: 1px solid transparent;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
 }
 .nav.scrolled {
   background-color: rgba(6, 30, 41, 0.95);
@@ -96,7 +116,9 @@ p {
   font-weight: 700;
   color: var(--font-color);
 }
-.nav-logo span { color: var(--aksen); }
+.nav-logo span {
+  color: var(--aksen);
+}
 
 .nav-menu {
   display: flex;
@@ -108,7 +130,9 @@ p {
   color: var(--font-color);
   padding: 0.4rem 0;
   border-bottom: 2px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
 }
 .nav-menu a:hover,
 .nav-menu a.active {
@@ -132,15 +156,25 @@ p {
   width: 26px;
   height: 2px;
   background-color: var(--font-color);
-  transition: transform 0.25s, opacity 0.2s;
+  transition:
+    transform 0.25s,
+    opacity 0.2s;
 }
 /* Saat terbuka, tiga garis berubah jadi X */
-.nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
 
 @media (max-width: 900px) {
-  .nav-toggle { display: flex; }
+  .nav-toggle {
+    display: flex;
+  }
 
   /* Menu jadi panel yang turun dari bawah navbar, tertutup secara default */
   .nav-menu {
@@ -156,36 +190,64 @@ p {
     border-bottom: 1px solid var(--line);
     display: none;
   }
-  .nav-menu.open { display: flex; }
+  .nav-menu.open {
+    display: flex;
+  }
 
-  .nav-menu li { border-bottom: 1px solid var(--line); }
-  .nav-menu a { display: block; padding: 1rem 0; border-bottom: none; }
+  .nav-menu li {
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-menu a {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: none;
+  }
 }
 /* NAVBAR END*/
 
 /* HERO */
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr; /* kiri = foto, kanan = teks */
   min-height: 90vh;
 }
 
+/* Gradasi di dasar hero: foto/latar memudar halus ke warna background
+   website, jadi tidak ada garis potong tegas ke section berikutnya. */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* Kiri: foto. Gradient di tepi kanan membuat foto
-   menyatu halus dengan warna latar sisi teks. */
+   menyatu halus dengan warna latar sisi teks.
+   Gradient tipis di atas menjaga navbar transparan tetap terbaca. */
 .hero-photo {
   background:
+    linear-gradient(to bottom, rgba(6, 30, 41, 0.75), transparent 25%),
     linear-gradient(to right, transparent 55%, var(--bg)),
     url("gym3.jpeg") center 40% / cover no-repeat;
 }
 
-/* Kanan: teks */
+/* Kanan: teks. Padding atas = tinggi navbar + jarak,
+   supaya judul tidak menabrak navbar fixed. */
 .hero-text {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 64px 8vw 64px 32px;
+  padding: calc(var(--nav-h) + 48px) 8vw 96px 32px;
 }
 
 .hero-text h1 {
@@ -291,14 +353,21 @@ p {
   }
 
   .hero-photo {
-    min-height: 40vh;
+    min-height: 45vh;
     background:
+      linear-gradient(to bottom, rgba(6, 30, 41, 0.75), transparent 25%),
       linear-gradient(to bottom, transparent 50%, var(--bg)),
       url("gym2.jpg") center 40% / cover no-repeat;
   }
 
   .hero-text {
-    padding: 8px 24px 56px;
+    padding: 8px 24px 72px;
+  }
+
+  /* Di mobile foto sudah memudar ke --bg di atas teks,
+     jadi gradasi bawah dibuat tipis agar tidak menutupi tombol/info. */
+  .hero::after {
+    height: 64px;
   }
 
   .hero-info {
@@ -315,10 +384,6 @@ p {
   p {
     font-family: var(--font-body);
   }
-
-
-
-
 }
 
 /* INI BAGIAN CSS LAIN AFTER HERO BEFORE FORM JOIN */
@@ -368,7 +433,9 @@ p {
   gap: 0.25rem;
   padding: 0 0 1.8rem 2.2rem;
 }
-.join-info li:last-child { padding-bottom: 0; }
+.join-info li:last-child {
+  padding-bottom: 0;
+}
 .join-info li::before {
   content: counter(step);
   position: absolute;
@@ -390,7 +457,11 @@ p {
   font-size: 1.2rem;
   color: var(--font-color);
 }
-.join-info li span { color: rgba(243, 244, 244, 0.7); line-height: 1.5; font-size: 0.9rem; }
+.join-info li span {
+  color: rgba(243, 244, 244, 0.7);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
 
 /* Kartu form */
 .join-form {
@@ -451,11 +522,15 @@ p {
   transition: border-color 0.2s;
   color-scheme: dark; /* ikon kalender & dropdown ikut tema gelap */
 }
-.join-form input::placeholder { color: rgba(243, 244, 244, 0.4); }
+.join-form input::placeholder {
+  color: rgba(243, 244, 244, 0.4);
+}
 .join-form input:hover,
 .join-form select:hover,
 .join-form input:focus,
-.join-form select:focus { border-color: var(--aksen); }
+.join-form select:focus {
+  border-color: var(--aksen);
+}
 
 /* Pesan error di bawah field (kosong = tidak terlihat) */
 .join-form small {
@@ -466,7 +541,9 @@ p {
 }
 /* State error: class "invalid" ditambahkan JS ke <label> */
 .join-form label.invalid input,
-.join-form label.invalid select { border-color: var(--error); }
+.join-form label.invalid select {
+  border-color: var(--error);
+}
 
 /* Checkbox */
 .join-check {
@@ -476,8 +553,15 @@ p {
   font-weight: 400;
   line-height: 1.5;
 }
-.join-check input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--aksen); }
-.join-check small { grid-column: 1 / -1; }
+.join-check input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--aksen);
+}
+.join-check small {
+  grid-column: 1 / -1;
+}
 
 /* Ringkasan paket */
 .join-summary {
@@ -489,12 +573,29 @@ p {
   border-radius: 8px;
   font-size: 0.9rem;
 }
-.join-summary div { display: flex; justify-content: space-between; gap: 1rem; }
-.join-summary dt { color: rgba(243, 244, 244, 0.7); }
-.join-summary dd { color: var(--font-color); font-weight: 500; text-align: right; }
+.join-summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.join-summary dt {
+  color: rgba(243, 244, 244, 0.7);
+}
+.join-summary dd {
+  color: var(--font-color);
+  font-weight: 500;
+  text-align: right;
+}
 /* Baris terakhir = total bayar */
-.join-summary div:last-child { padding-top: 0.6rem; border-top: 1px solid var(--line); }
-.join-summary div:last-child dd { font-family: var(--font-heading); font-size: 1.4rem; color: var(--aksen); }
+.join-summary div:last-child {
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+}
+.join-summary div:last-child dd {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--aksen);
+}
 
 /* Tombol submit form join */
 .join-btn {
@@ -509,26 +610,641 @@ p {
   cursor: pointer;
   transition: background-color 0.2s;
 }
-.join-btn:hover { background-color: var(--font-color); }
-.join-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.join-btn:hover {
+  background-color: var(--font-color);
+}
+.join-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 /* Pesan setelah submit: tersembunyi sampai JS menambah .success / .error */
-.join-msg { display: none; padding: 0.9rem 1rem; border-radius: 6px; font-size: 0.9rem; line-height: 1.5; }
-.join-msg.success { display: block; background-color: rgba(95, 149, 152, 0.18); border: 1px solid var(--aksen); color: var(--font-color); }
-.join-msg.error { display: block; background-color: rgba(255, 138, 128, 0.12); border: 1px solid var(--error); color: var(--error); }
+.join-msg {
+  display: none;
+  padding: 0.9rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.join-msg.success {
+  display: block;
+  background-color: rgba(95, 149, 152, 0.18);
+  border: 1px solid var(--aksen);
+  color: var(--font-color);
+}
+.join-msg.error {
+  display: block;
+  background-color: rgba(255, 138, 128, 0.12);
+  border: 1px solid var(--error);
+  color: var(--error);
+}
 
 @media (max-width: 900px) {
-  .join { padding: 4.5rem 1.2rem; }
-  .join-container { grid-template-columns: 1fr; gap: 3rem; }
+  .join {
+    padding: 4.5rem 1.2rem;
+  }
+  .join-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 }
 @media (max-width: 520px) {
-  .join-form { padding: 1.5rem 1.2rem; }
-  .join-row { grid-template-columns: 1fr; }
+  .join-form {
+    padding: 1.5rem 1.2rem;
+  }
+  .join-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Hormati pengguna yang mematikan animasi di perangkatnya */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  * { transition: none !important; }
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
 }
 
+/* =========================================================
+   JADWAL KELAS
+   ========================================================= */
+.jadwal {
+  scroll-margin-top: var(--nav-h);
+}
+
+.jadwal h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--font-color);
+}
+/* Garis aksen kecil di bawah judul */
+.jadwal h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 14px auto 0;
+  background-color: var(--aksen);
+  border-radius: 2px;
+}
+
+.jadwal .sub {
+  text-align: center;
+  color: var(--font-sekunder);
+  margin: 16px 0 32px;
+}
+
+/* ---------- Filter hari ---------- */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.filter button {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 22px;
+  min-height: 44px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--font-color);
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+.filter button:hover {
+  border-color: var(--aksen);
+  color: var(--aksen);
+}
+.filter button.aktif {
+  background: var(--aksen);
+  border-color: var(--aksen);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+/* ---------- Tabel ---------- */
+.tabel-wrap {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.jadwal table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.jadwal thead {
+  background-color: rgba(29, 84, 109, 0.55);
+}
+.jadwal th,
+.jadwal td {
+  text-align: left;
+  padding: 16px 20px;
+}
+.jadwal th {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--font-sekunder);
+}
+
+.jadwal td {
+  border-bottom: 1px solid rgba(95, 149, 152, 0.16);
+  font-size: 15px;
+  color: var(--font-color);
+  vertical-align: middle;
+}
+.jadwal tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Isi tiap sel dibungkus .isi agar ikon/teks sejajar rapi */
+.jadwal .isi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Hover: sorot lembut + garis aksen di kiri (teks tetap terbaca jelas) */
+.jadwal tbody tr {
+  transition: background-color 0.2s ease;
+  animation: baris-masuk 0.35s ease both;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+.jadwal tbody tr:hover {
+  background-color: rgba(95, 149, 152, 0.12);
+}
+.jadwal tbody tr td:first-child {
+  box-shadow: inset 3px 0 0 transparent;
+  transition: box-shadow 0.2s ease;
+}
+.jadwal tbody tr:hover td:first-child,
+.jadwal tbody tr.hari-ini td:first-child {
+  box-shadow: inset 3px 0 0 var(--aksen);
+}
+.jadwal tbody tr.hari-ini {
+  background-color: rgba(95, 149, 152, 0.08);
+}
+
+@keyframes baris-masuk {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Isi sel ---------- */
+.badge-hari {
+  display: inline-block;
+  min-width: 64px;
+  text-align: center;
+  background-color: rgba(95, 149, 152, 0.16);
+  border: 1px solid var(--line);
+  color: var(--font-color);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.tag-hariini {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background-color: var(--aksen);
+  color: var(--bg);
+}
+
+.jadwal .jam {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nama-kelas {
+  font-weight: 700;
+  color: var(--font-color);
+}
+.dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--aksen);
+}
+.dot-yoga {
+  background-color: #7fc8a9;
+}
+.dot-zumba {
+  background-color: #ff7fb0;
+}
+.dot-hiit {
+  background-color: #ff9f6e;
+}
+.dot-strength {
+  background-color: #c4a4ff;
+}
+.dot-boxing {
+  background-color: #ff8a80;
+}
+.dot-cardio {
+  background-color: #6ec6ff;
+}
+
+.avatar {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  border: 1px solid var(--aksen);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--font-color);
+}
+
+.pill-durasi {
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--font-sekunder);
+  white-space: nowrap;
+}
+
+.jadwal td.kosong {
+  text-align: center;
+  color: var(--font-sekunder);
+  padding: 40px 20px;
+}
+
+/* ---------- Tombol lihat selengkapnya ---------- */
+.area-toggle {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.toggle-jadwal {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 28px;
+  min-height: 44px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--aksen);
+  color: var(--aksen);
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+.toggle-jadwal:hover {
+  background: var(--aksen);
+  color: var(--bg);
+}
+.toggle-jadwal .panah {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+.toggle-jadwal.terbuka .panah {
+  transform: rotate(180deg);
+}
+
+.info-jumlah {
+  margin-top: 16px;
+  text-align: center;
+  color: var(--font-sekunder);
+  font-size: 14px;
+}
+
+/* ---------- Tablet / HP: tiap baris jadi kartu ---------- */
+@media (max-width: 720px) {
+  .jadwal {
+    padding: 56px 16px;
+  }
+
+  /* Judul kolom disembunyikan secara visual, tetap dibaca screen reader */
+  .jadwal thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .jadwal table,
+  .jadwal tbody,
+  .jadwal tr,
+  .jadwal td {
+    display: block;
+    width: 100%;
+  }
+
+  .jadwal tbody tr {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .jadwal tbody tr:last-child {
+    border-bottom: none;
+  }
+  .jadwal tbody tr td:first-child {
+    box-shadow: none;
+  }
+  .jadwal tbody tr:hover td:first-child,
+  .jadwal tbody tr.hari-ini td:first-child {
+    box-shadow: none;
+  }
+  .jadwal tbody tr.hari-ini {
+    box-shadow: inset 3px 0 0 var(--aksen);
+  }
+
+  .jadwal td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 7px 0;
+    border-bottom: none;
+  }
+  .jadwal td::before {
+    content: attr(data-label);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--font-sekunder);
+  }
+  .jadwal td.kosong {
+    justify-content: center;
+    padding: 32px 0;
+  }
+  .jadwal td.kosong::before {
+    content: none;
+  }
+
+  /* Filter jadi satu baris yang bisa digeser */
+  .filter {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .filter::-webkit-scrollbar {
+    display: none;
+  }
+  .filter button {
+    flex-shrink: 0;
+  }
+}
+
+/* Pengguna yang mematikan animasi: baris langsung tampil */
+@media (prefers-reduced-motion: reduce) {
+  .jadwal tbody tr {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   PROGRAM LATIHAN
+   ========================================================= */
+.program {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  scroll-margin-top: var(--nav-h);
+}
+
+.program h2 {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--font-color);
+}
+
+.program .sub {
+  text-align: center;
+  color: var(--font-color);
+  margin: 8px 0 32px;
+}
+
+/* Teks untuk screen reader saja */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Kotak pencarian */
+.program-search {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 16px;
+}
+.program-search input {
+  width: 100%;
+  padding: 14px 46px 14px 46px;
+  font-size: 15px;
+  color: var(--font-color);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color-scheme: dark;
+  transition: border-color 0.2s;
+}
+.program-search input::placeholder {
+  color: rgba(243, 244, 244, 0.45);
+}
+.program-search input:hover,
+.program-search input:focus {
+  border-color: var(--aksen);
+}
+.program-search input::-webkit-search-cancel-button {
+  display: none; /* pakai tombol hapus sendiri */
+}
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--aksen);
+  pointer-events: none;
+}
+.search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--font-color);
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.search-clear:hover {
+  background-color: var(--primary);
+}
+.search-clear[hidden] {
+  display: none;
+}
+
+.program-info {
+  min-height: 1.4em;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--font-sekunder);
+}
+
+/* Grid card */
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.program-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 28px 24px;
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  /* keadaan awal: tersembunyi, geser sedikit ke bawah */
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    background-color 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+.program-card.tampil {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Hover: naik sedikit + bayangan */
+.program-card.tampil:hover {
+  transform: translateY(-8px);
+  background-color: var(--card-hover);
+  border-color: var(--aksen);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
+  transition-delay: 0s !important;
+}
+
+.program-ikon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+  background-color: var(--primary);
+  border: 2px solid var(--aksen);
+  border-radius: 14px;
+  transition: transform 0.3s ease;
+}
+.program-card:hover .program-ikon {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+.program-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--font-color);
+}
+.program-card p {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(243, 244, 244, 0.78);
+}
+.program-level {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  color: var(--aksen);
+  border: 1px solid var(--aksen);
+  border-radius: 999px;
+}
+
+.program-kosong {
+  margin-top: 8px;
+  text-align: center;
+  color: var(--font-sekunder);
+  padding: 32px 0;
+}
+.program-kosong[hidden] {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .program-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .program {
+    padding: 56px 16px;
+  }
+  .program h2 {
+    font-size: 30px;
+  }
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Pengguna yang mematikan animasi: card langsung tampil.
+   (!important karena aturan reduced-motion sebelumnya sudah mematikan transition) */
+@media (prefers-reduced-motion: reduce) {
+  .program-card {
+    opacity: 1;
+    transform: none;
+  }
+}
