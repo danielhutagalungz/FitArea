@@ -1,10 +1,10 @@
 :root {
-  --primary: #1D546D;
-  --bg: #061E29;
-  --aksen: #5F9598;
-  --font-color: #F3F4F4;
-  --font-heading: "Oswald", sans-serif;
-  --font-body: "Roboto", Arial, sans-serif;
+  --primary: #1d546d;
+  --bg: #061e29;
+  --aksen: #5f9598;
+  --font-color: #f3f4f4;
+  --font-heading: "Oswald", Arial, sans-serif;
+  --font-body: "Poppins", Arial, sans-serif;
 }
 
 * {
@@ -21,24 +21,24 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-main);
   background-color: var(--bg);
   color: #fff;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   max-width: 100%;
 }
 
 /* NAVBAR */
 
-
 /* HERO */
 
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;   /* kiri = foto, kanan = teks */
+  grid-template-columns: 1fr 1fr; /* kiri = foto, kanan = teks */
   min-height: 90vh;
 }
 
@@ -99,7 +99,10 @@ html, body {
   border-radius: 999px;
   font-family: var(--font-body);
   font-weight: 500;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
 .btn:focus-visible {
@@ -170,5 +173,16 @@ html, body {
 
   .hero-info {
     gap: 20px;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-weight: 900;
+  }
+  h2 {
+    font-family: var(--font-heading);
+  }
+  p {
+    font-family: var(--font-body);
   }
 }
