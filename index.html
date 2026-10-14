@@ -61,7 +61,7 @@
         </p>
 
         <div class="hero-buttons">
-          <a href="#daftar" class="btn btn-primary">Daftar member</a>
+          <a href="#membership" class="btn btn-primary">Daftar member</a>
         </div>
 
         <!-- Info singkat (ubah sesuai data gym Anda) -->
@@ -115,6 +115,87 @@
       </p>
     </section>
     <!-- PROGRAM LATIHAN END -->
+
+    <!-- TRAINER START -->
+    <section class="trainer" id="trainer">
+      <h2>Tim Trainer</h2>
+      <p class="sub">Dibimbing langsung oleh pelatih bersertifikat FitArea</p>
+
+      <!--
+        FOTO: taruh file foto di folder "trainer/" (sejajar index.html),
+        lalu sesuaikan nama file di --foto. Selama foto belum ada, kartu
+        menampilkan inisial nama sebagai gantinya.
+        Spesialis & hari mengajar mengikuti data di jadwal.js.
+      -->
+      <div class="trainer-grid">
+        <article class="trainer-card">
+          <div class="trainer-foto" style="--foto: url('trainer/dewi-anggraini.jpg')">
+            <span class="trainer-inisial" aria-hidden="true">DA</span>
+          </div>
+          <div class="trainer-info">
+            <h3>Dewi Anggraini</h3>
+            <p class="trainer-spesialis">Yoga</p>
+            <p class="trainer-hari">Sen &middot; Rab &middot; Jum</p>
+          </div>
+        </article>
+
+        <article class="trainer-card">
+          <div class="trainer-foto" style="--foto: url('trainer/rafi-pratama.jpg')">
+            <span class="trainer-inisial" aria-hidden="true">RP</span>
+          </div>
+          <div class="trainer-info">
+            <h3>Rafi Pratama</h3>
+            <p class="trainer-spesialis">HIIT</p>
+            <p class="trainer-hari">Sen &middot; Rab &middot; Jum</p>
+          </div>
+        </article>
+
+        <article class="trainer-card">
+          <div class="trainer-foto" style="--foto: url('trainer/bima-saputra.jpg')">
+            <span class="trainer-inisial" aria-hidden="true">BS</span>
+          </div>
+          <div class="trainer-info">
+            <h3>Bima Saputra</h3>
+            <p class="trainer-spesialis">Strength Training</p>
+            <p class="trainer-hari">Sen &middot; Kam &middot; Sab</p>
+          </div>
+        </article>
+
+        <article class="trainer-card">
+          <div class="trainer-foto" style="--foto: url('trainer/sinta-maharani.jpg')">
+            <span class="trainer-inisial" aria-hidden="true">SM</span>
+          </div>
+          <div class="trainer-info">
+            <h3>Sinta Maharani</h3>
+            <p class="trainer-spesialis">Zumba</p>
+            <p class="trainer-hari">Sel &middot; Kam &middot; Sab</p>
+          </div>
+        </article>
+
+        <article class="trainer-card">
+          <div class="trainer-foto" style="--foto: url('trainer/andre-wijaya.jpg')">
+            <span class="trainer-inisial" aria-hidden="true">AW</span>
+          </div>
+          <div class="trainer-info">
+            <h3>Andre Wijaya</h3>
+            <p class="trainer-spesialis">Boxing</p>
+            <p class="trainer-hari">Sel &middot; Kam &middot; Sab</p>
+          </div>
+        </article>
+
+        <article class="trainer-card">
+          <div class="trainer-foto" style="--foto: url('trainer/laras-putri.jpg')">
+            <span class="trainer-inisial" aria-hidden="true">LP</span>
+          </div>
+          <div class="trainer-info">
+            <h3>Laras Putri</h3>
+            <p class="trainer-spesialis">Cardio</p>
+            <p class="trainer-hari">Sel &middot; Rab &middot; Jum</p>
+          </div>
+        </article>
+      </div>
+    </section>
+    <!-- TRAINER END -->
 
     <!-- JADWAL KELAS START -->
     <section class="jadwal" id="jadwal">
@@ -216,6 +297,103 @@
     <!-- MEMBERSHIP END -->
 
     <!-- SECTION PROGRAM LATIHAN, TRAINER, JADWAL KELAS, MEMBERSHIP, TENGOK INI COY -->
+
+
+    <!-- BMI CALCULATOR START -->
+    <section class="bmi" id="bmi">
+      <h2>Kalkulator BMI</h2>
+      <p class="sub">Cek indeks massa tubuhmu sebelum menentukan program latihan</p>
+
+      <div class="bmi-container">
+        <!-- Kiri: form input -->
+        <form class="bmi-form" id="bmiForm" novalidate>
+          <h3>Data tubuhmu</h3>
+
+          <label
+            >Tinggi badan
+            <span class="bmi-field">
+              <input
+                type="number"
+                id="bmiTinggi"
+                name="tinggi"
+                inputmode="decimal"
+                step="0.1"
+                placeholder="Contoh: 170"
+              />
+              <em>cm</em>
+            </span>
+            <small></small>
+          </label>
+
+          <label
+            >Berat badan
+            <span class="bmi-field">
+              <input
+                type="number"
+                id="bmiBerat"
+                name="berat"
+                inputmode="decimal"
+                step="0.1"
+                placeholder="Contoh: 65"
+              />
+              <em>kg</em>
+            </span>
+            <small></small>
+          </label>
+
+          <div class="bmi-actions">
+            <button type="submit" class="join-btn">Hitung BMI</button>
+            <button type="button" class="bmi-reset" id="bmiReset">Reset</button>
+          </div>
+
+          <p class="bmi-catatan">
+            Rumus: berat (kg) &divide; tinggi (m)&sup2;. Hasil ini perkiraan
+            untuk orang dewasa dan bukan diagnosis medis.
+          </p>
+        </form>
+
+        <!-- Kanan: hasil -->
+        <div class="bmi-hasil" id="bmiHasil" data-kategori="" aria-live="polite">
+          <p class="bmi-label">BMI kamu</p>
+          <p class="bmi-angka" id="bmiAngka">--</p>
+          <span class="bmi-kategori" id="bmiKategori">Belum dihitung</span>
+
+          <!-- Gauge: 4 segmen sesuai kategori, penanda digeser oleh JS -->
+          <div class="bmi-gauge" aria-hidden="true">
+            <div class="bmi-bar">
+              <span class="seg-kurang"></span>
+              <span class="seg-normal"></span>
+              <span class="seg-berlebih"></span>
+              <span class="seg-obesitas"></span>
+            </div>
+            <div class="bmi-marker" id="bmiMarker"></div>
+            <div class="bmi-skala">
+              <span style="left: 14%">18,5</span>
+              <span style="left: 40%">25</span>
+              <span style="left: 60%">30</span>
+            </div>
+          </div>
+
+          <p class="bmi-pesan" id="bmiPesan">
+            Isi tinggi dan berat badan, lalu tekan Hitung BMI.
+          </p>
+
+          <dl class="bmi-detail">
+            <div>
+              <dt>Berat ideal</dt>
+              <dd id="bmiIdeal">-</dd>
+            </div>
+            <div>
+              <dt>Target</dt>
+              <dd id="bmiSelisih">-</dd>
+            </div>
+          </dl>
+
+          <a href="#program" class="btn btn-primary">Lihat program latihan</a>
+        </div>
+      </div>
+    </section>
+    <!-- BMI CALCULATOR END -->
 
     <!-- JOIN MEMBERSHIP START -->
     <section class="join" id="join">
@@ -391,102 +569,6 @@
       </div>
     </section>
     <!-- JOIN MEMBERSHIP END -->
-
-    <!-- BMI CALCULATOR START -->
-    <section class="bmi" id="bmi">
-      <h2>Kalkulator BMI</h2>
-      <p class="sub">Cek indeks massa tubuhmu sebelum menentukan program latihan</p>
-
-      <div class="bmi-container">
-        <!-- Kiri: form input -->
-        <form class="bmi-form" id="bmiForm" novalidate>
-          <h3>Data tubuhmu</h3>
-
-          <label
-            >Tinggi badan
-            <span class="bmi-field">
-              <input
-                type="number"
-                id="bmiTinggi"
-                name="tinggi"
-                inputmode="decimal"
-                step="0.1"
-                placeholder="Contoh: 170"
-              />
-              <em>cm</em>
-            </span>
-            <small></small>
-          </label>
-
-          <label
-            >Berat badan
-            <span class="bmi-field">
-              <input
-                type="number"
-                id="bmiBerat"
-                name="berat"
-                inputmode="decimal"
-                step="0.1"
-                placeholder="Contoh: 65"
-              />
-              <em>kg</em>
-            </span>
-            <small></small>
-          </label>
-
-          <div class="bmi-actions">
-            <button type="submit" class="join-btn">Hitung BMI</button>
-            <button type="button" class="bmi-reset" id="bmiReset">Reset</button>
-          </div>
-
-          <p class="bmi-catatan">
-            Rumus: berat (kg) &divide; tinggi (m)&sup2;. Hasil ini perkiraan
-            untuk orang dewasa dan bukan diagnosis medis.
-          </p>
-        </form>
-
-        <!-- Kanan: hasil -->
-        <div class="bmi-hasil" id="bmiHasil" data-kategori="" aria-live="polite">
-          <p class="bmi-label">BMI kamu</p>
-          <p class="bmi-angka" id="bmiAngka">--</p>
-          <span class="bmi-kategori" id="bmiKategori">Belum dihitung</span>
-
-          <!-- Gauge: 4 segmen sesuai kategori, penanda digeser oleh JS -->
-          <div class="bmi-gauge" aria-hidden="true">
-            <div class="bmi-bar">
-              <span class="seg-kurang"></span>
-              <span class="seg-normal"></span>
-              <span class="seg-berlebih"></span>
-              <span class="seg-obesitas"></span>
-            </div>
-            <div class="bmi-marker" id="bmiMarker"></div>
-            <div class="bmi-skala">
-              <span style="left: 14%">18,5</span>
-              <span style="left: 40%">25</span>
-              <span style="left: 60%">30</span>
-            </div>
-          </div>
-
-          <p class="bmi-pesan" id="bmiPesan">
-            Isi tinggi dan berat badan, lalu tekan Hitung BMI.
-          </p>
-
-          <dl class="bmi-detail">
-            <div>
-              <dt>Berat ideal</dt>
-              <dd id="bmiIdeal">-</dd>
-            </div>
-            <div>
-              <dt>Target</dt>
-              <dd id="bmiSelisih">-</dd>
-            </div>
-          </dl>
-
-          <a href="#program" class="btn btn-primary">Lihat program latihan</a>
-        </div>
-      </div>
-    </section>
-    <!-- BMI CALCULATOR END -->
 
     <!-- DISINI BARU FAQ, FOOTER -->
 

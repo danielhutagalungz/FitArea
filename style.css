@@ -126,18 +126,33 @@ p {
   gap: 1.6rem;
 }
 .nav-menu a {
+  position: relative;
+  display: inline-block;
   font-size: 0.9rem;
   color: var(--font-color);
   padding: 0.4rem 0;
-  border-bottom: 2px solid transparent;
-  transition:
-    color 0.2s,
-    border-color 0.2s;
+  transition: color 0.2s;
+}
+/* Garis bawah: awalnya lebar 0 di tengah, lalu melebar ke kiri & kanan */
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: var(--aksen);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
 }
 .nav-menu a:hover,
 .nav-menu a.active {
   color: var(--aksen);
-  border-bottom-color: var(--aksen);
+}
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+  transform: scaleX(1);
 }
 
 /* Hamburger: disembunyikan di desktop */
@@ -200,7 +215,9 @@ p {
   .nav-menu a {
     display: block;
     padding: 1rem 0;
-    border-bottom: none;
+  }
+  .nav-menu a::after {
+    display: none;
   }
 }
 /* NAVBAR END*/
@@ -235,7 +252,7 @@ p {
   background:
     linear-gradient(to bottom, rgba(6, 30, 41, 0.75), transparent 25%),
     linear-gradient(to right, transparent 55%, var(--bg)),
-    url("gym3.jpeg") center 40% / cover no-repeat;
+    url("gym3hade.jpeg") center 40% / cover no-repeat;
 }
 
 /* Kanan: teks. Padding atas = tinggi navbar + jarak,
@@ -371,7 +388,7 @@ p {
         rgba(6, 30, 41, 0.55) 35%,
         rgba(6, 30, 41, 0.92)
       ),
-      url("gym3.jpeg") center / cover no-repeat;
+      url("gym3hade.jpeg") center / cover no-repeat;
   }
 
   .hero-text {
@@ -433,7 +450,7 @@ p {
 /* Nomor langkah dibuat dengan CSS counter */
 .join-info ol {
   counter-reset: step;
-  border-left: 2px solid var(--line);
+  padding-left: 2px; /* menggantikan lebar garis lama, posisi teks tetap */
 }
 .join-info li {
   counter-increment: step;
@@ -445,7 +462,19 @@ p {
 .join-info li:last-child {
   padding-bottom: 0;
 }
+/* Garis penghubung: dari pusat nomor ini ke pusat nomor berikutnya.
+   Langkah terakhir tidak punya garis, jadi tidak ada sisa di bawahnya. */
+.join-info li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  width: 2px;
+  top: 12px;
+  bottom: -12px;
+  background-color: var(--line);
+}
 .join-info li::before {
+  z-index: 1; /* lingkaran menutupi ujung garis */
   content: counter(step);
   position: absolute;
   left: -15px;
@@ -1758,5 +1787,159 @@ p {
 @media (prefers-reduced-motion: reduce) {
   .bmi-marker {
     transition: none;
+  }
+}
+
+/* =========================================================
+   TRAINER
+   ========================================================= */
+.trainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  scroll-margin-top: var(--nav-h);
+}
+
+.trainer h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--font-color);
+}
+/* Garis aksen kecil di bawah judul (sama seperti section lain) */
+.trainer h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 14px auto 0;
+  background-color: var(--aksen);
+  border-radius: 2px;
+}
+
+.trainer .sub {
+  text-align: center;
+  color: var(--font-sekunder);
+  margin: 16px 0 48px;
+}
+
+.trainer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Photocard: foto penuh, nama & spesialis di atas gradasi bawah */
+.trainer-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  transition:
+    transform 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+.trainer-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--aksen);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
+}
+
+.trainer-foto {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  /* latar cadangan saat foto belum ada */
+  background: radial-gradient(circle at 50% 35%, var(--primary), var(--card) 75%);
+}
+/* Foto ada di lapisan sendiri: kalau file tidak ditemukan, inisial tetap terlihat */
+.trainer-foto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--foto, none) center / cover no-repeat;
+  transition: transform 0.5s ease;
+}
+.trainer-card:hover .trainer-foto::before {
+  transform: scale(1.06);
+}
+
+.trainer-inisial {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: rgba(243, 244, 244, 0.3);
+}
+
+.trainer-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 56px 20px 20px;
+  background: linear-gradient(
+    to top,
+    rgba(6, 30, 41, 0.96),
+    rgba(6, 30, 41, 0.75) 55%,
+    transparent
+  );
+}
+.trainer-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--font-color);
+}
+.trainer-spesialis {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 12px;
+  border-radius: 999px;
+  background-color: var(--aksen);
+  color: var(--bg);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.trainer-hari {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--font-sekunder);
+}
+
+@media (max-width: 900px) {
+  .trainer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .trainer {
+    padding: 56px 16px;
+  }
+  .trainer-grid {
+    gap: 14px;
+  }
+  .trainer-info {
+    padding: 40px 12px 14px;
+  }
+  .trainer-info h3 {
+    font-size: 1.05rem;
+  }
+  .trainer-spesialis {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+  }
+  .trainer-hari {
+    font-size: 0.75rem;
   }
 }
