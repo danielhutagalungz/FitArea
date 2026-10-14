@@ -116,8 +116,19 @@ tombolHari.forEach(function (tombol) {
 
 // 6. Event klik tombol panjangkan / pendekkan tabel
 tombolToggle.addEventListener("click", function () {
+  // Catat posisi tombol di layar sebelum tabel berubah tinggi
+  const topSebelum = tombolToggle.getBoundingClientRect().top;
+
   tampilSemua = !tampilSemua;
   tampilkanJadwal(hariAktif);
+
+  // Setelah tabel memendek/memanjang, geser scroll supaya tombol tetap
+  // di posisi layar yang sama (tidak "loncat" ke section di bawahnya).
+  // behavior "instant" menimpa scroll-behavior: smooth di CSS.
+  const selisih = tombolToggle.getBoundingClientRect().top - topSebelum;
+  if (selisih !== 0) {
+    window.scrollBy({ top: selisih, left: 0, behavior: "instant" });
+  }
 });
 
 // 7. Tampilkan jadwal saat halaman pertama dibuka

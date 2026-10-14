@@ -208,26 +208,46 @@ p {
 /* HERO */
 
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr; /* kiri = foto, kanan = teks */
   min-height: 90vh;
 }
 
+/* Gradasi di dasar hero: foto/latar memudar halus ke warna background
+   website, jadi tidak ada garis potong tegas ke section berikutnya. */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* Kiri: foto. Gradient di tepi kanan membuat foto
-   menyatu halus dengan warna latar sisi teks. */
+   menyatu halus dengan warna latar sisi teks.
+   Gradient tipis di atas menjaga navbar transparan tetap terbaca. */
 .hero-photo {
   background:
+    linear-gradient(to bottom, rgba(6, 30, 41, 0.75), transparent 25%),
     linear-gradient(to right, transparent 55%, var(--bg)),
     url("gym3.jpeg") center 40% / cover no-repeat;
 }
 
-/* Kanan: teks */
+/* Kanan: teks. Padding atas = tinggi navbar + jarak,
+   supaya judul tidak menabrak navbar fixed. */
 .hero-text {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 64px 8vw 64px 32px;
+  padding: calc(var(--nav-h) + 48px) 8vw 96px 32px;
 }
 
 .hero-text h1 {
@@ -333,14 +353,21 @@ p {
   }
 
   .hero-photo {
-    min-height: 40vh;
+    min-height: 45vh;
     background:
+      linear-gradient(to bottom, rgba(6, 30, 41, 0.75), transparent 25%),
       linear-gradient(to bottom, transparent 50%, var(--bg)),
       url("gym2.jpg") center 40% / cover no-repeat;
   }
 
   .hero-text {
-    padding: 8px 24px 56px;
+    padding: 8px 24px 72px;
+  }
+
+  /* Di mobile foto sudah memudar ke --bg di atas teks,
+     jadi gradasi bawah dibuat tipis agar tidak menutupi tombol/info. */
+  .hero::after {
+    height: 64px;
   }
 
   .hero-info {
@@ -640,28 +667,45 @@ p {
   }
 }
 
+/* =========================================================
+   JADWAL KELAS
+   ========================================================= */
+.jadwal {
+  scroll-margin-top: var(--nav-h);
+}
+
 .jadwal h2 {
   font-family: var(--font-heading);
-  font-size: 40px;
+  font-size: clamp(2rem, 5vw, 2.5rem);
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
   color: var(--font-color);
 }
+/* Garis aksen kecil di bawah judul */
+.jadwal h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 14px auto 0;
+  background-color: var(--aksen);
+  border-radius: 2px;
+}
 
 .jadwal .sub {
   text-align: center;
-  color: var(--font-color);
-  margin: 8px 0 32px;
+  color: var(--font-sekunder);
+  margin: 16px 0 32px;
 }
 
-/* Tombol filter hari */
+/* ---------- Filter hari ---------- */
 .filter {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .filter button {
@@ -672,17 +716,18 @@ p {
   min-height: 44px;
   border-radius: 999px;
   background: transparent;
-  border: 1px solid var(--garis);
+  border: 1px solid var(--line);
   color: var(--font-color);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
 }
-
 .filter button:hover {
   border-color: var(--aksen);
   color: var(--aksen);
 }
-
 .filter button.aktif {
   background: var(--aksen);
   border-color: var(--aksen);
@@ -690,88 +735,181 @@ p {
   font-weight: 700;
 }
 
-/* Tabel jadwal */
+/* ---------- Tabel ---------- */
 .tabel-wrap {
-  background: var(--primary);
-  border: 1px solid var(--aksen);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  overflow-x: auto;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
 }
 
-table {
+.jadwal table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 560px;
 }
 
-thead {
-  background: var(--primary);
-  color: var(--font-color);
+.jadwal thead {
+  background-color: rgba(29, 84, 109, 0.55);
 }
-
-th,
-td {
+.jadwal th,
+.jadwal td {
   text-align: left;
   padding: 16px 20px;
 }
-
-th {
+.jadwal th {
   font-family: var(--font-heading);
   font-weight: 500;
-  letter-spacing: 1px;
+  font-size: 13px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  font-size: 14px;
+  color: var(--font-sekunder);
 }
 
-tbody tr {
-  transition: background 0.2s ease;
-}
-
-tbody tr:nth-child(even) {
-  background: rgba(29, 84, 109, 0.18);
-}
-
-tbody tr:hover {
-  background: var(--aksen);
-}
-
-td {
-  border-bottom: 1px solid rgba(95, 149, 152, 0.2);
+.jadwal td {
+  border-bottom: 1px solid rgba(95, 149, 152, 0.16);
   font-size: 15px;
   color: var(--font-color);
+  vertical-align: middle;
 }
-
-tbody tr:last-child td {
+.jadwal tbody tr:last-child td {
   border-bottom: none;
 }
 
+/* Isi tiap sel dibungkus .isi agar ikon/teks sejajar rapi */
+.jadwal .isi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Hover: sorot lembut + garis aksen di kiri (teks tetap terbaca jelas) */
+.jadwal tbody tr {
+  transition: background-color 0.2s ease;
+  animation: baris-masuk 0.35s ease both;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+.jadwal tbody tr:hover {
+  background-color: rgba(95, 149, 152, 0.12);
+}
+.jadwal tbody tr td:first-child {
+  box-shadow: inset 3px 0 0 transparent;
+  transition: box-shadow 0.2s ease;
+}
+.jadwal tbody tr:hover td:first-child,
+.jadwal tbody tr.hari-ini td:first-child {
+  box-shadow: inset 3px 0 0 var(--aksen);
+}
+.jadwal tbody tr.hari-ini {
+  background-color: rgba(95, 149, 152, 0.08);
+}
+
+@keyframes baris-masuk {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Isi sel ---------- */
 .badge-hari {
   display: inline-block;
-  background: var(--primary);
+  min-width: 64px;
+  text-align: center;
+  background-color: rgba(95, 149, 152, 0.16);
+  border: 1px solid var(--line);
   color: var(--font-color);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  padding: 4px 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.tag-hariini {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
   border-radius: 6px;
+  background-color: var(--aksen);
+  color: var(--bg);
+}
+
+.jadwal .jam {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .nama-kelas {
   font-weight: 700;
   color: var(--font-color);
 }
-
-.kosong {
-  text-align: center;
-  color: var(--font-color);
-  padding: 32px;
+.dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--aksen);
+}
+.dot-yoga {
+  background-color: #7fc8a9;
+}
+.dot-zumba {
+  background-color: #ff7fb0;
+}
+.dot-hiit {
+  background-color: #ff9f6e;
+}
+.dot-strength {
+  background-color: #c4a4ff;
+}
+.dot-boxing {
+  background-color: #ff8a80;
+}
+.dot-cardio {
+  background-color: #6ec6ff;
 }
 
-/* Tombol lihat selengkapnya */
+.avatar {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  border: 1px solid var(--aksen);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--font-color);
+}
+
+.pill-durasi {
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--font-sekunder);
+  white-space: nowrap;
+}
+
+.jadwal td.kosong {
+  text-align: center;
+  color: var(--font-sekunder);
+  padding: 40px 20px;
+}
+
+/* ---------- Tombol lihat selengkapnya ---------- */
 .area-toggle {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .toggle-jadwal {
@@ -788,19 +926,18 @@ tbody tr:last-child td {
   border: 1px solid var(--aksen);
   color: var(--aksen);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
-
 .toggle-jadwal:hover {
   background: var(--aksen);
   color: var(--bg);
 }
-
 .toggle-jadwal .panah {
   font-size: 12px;
   transition: transform 0.3s ease;
 }
-
 .toggle-jadwal.terbuka .panah {
   transform: rotate(180deg);
 }
@@ -808,15 +945,306 @@ tbody tr:last-child td {
 .info-jumlah {
   margin-top: 16px;
   text-align: center;
-  color: var(--font-color);
+  color: var(--font-sekunder);
   font-size: 14px;
 }
 
-@media (max-width: 600px) {
+/* ---------- Tablet / HP: tiap baris jadi kartu ---------- */
+@media (max-width: 720px) {
   .jadwal {
     padding: 56px 16px;
   }
-  .jadwal h2 {
+
+  /* Judul kolom disembunyikan secara visual, tetap dibaca screen reader */
+  .jadwal thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .jadwal table,
+  .jadwal tbody,
+  .jadwal tr,
+  .jadwal td {
+    display: block;
+    width: 100%;
+  }
+
+  .jadwal tbody tr {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .jadwal tbody tr:last-child {
+    border-bottom: none;
+  }
+  .jadwal tbody tr td:first-child {
+    box-shadow: none;
+  }
+  .jadwal tbody tr:hover td:first-child,
+  .jadwal tbody tr.hari-ini td:first-child {
+    box-shadow: none;
+  }
+  .jadwal tbody tr.hari-ini {
+    box-shadow: inset 3px 0 0 var(--aksen);
+  }
+
+  .jadwal td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 7px 0;
+    border-bottom: none;
+  }
+  .jadwal td::before {
+    content: attr(data-label);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--font-sekunder);
+  }
+  .jadwal td.kosong {
+    justify-content: center;
+    padding: 32px 0;
+  }
+  .jadwal td.kosong::before {
+    content: none;
+  }
+
+  /* Filter jadi satu baris yang bisa digeser */
+  .filter {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .filter::-webkit-scrollbar {
+    display: none;
+  }
+  .filter button {
+    flex-shrink: 0;
+  }
+}
+
+/* Pengguna yang mematikan animasi: baris langsung tampil */
+@media (prefers-reduced-motion: reduce) {
+  .jadwal tbody tr {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   PROGRAM LATIHAN
+   ========================================================= */
+.program {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  scroll-margin-top: var(--nav-h);
+}
+
+.program h2 {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--font-color);
+}
+
+.program .sub {
+  text-align: center;
+  color: var(--font-color);
+  margin: 8px 0 32px;
+}
+
+/* Teks untuk screen reader saja */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Kotak pencarian */
+.program-search {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 16px;
+}
+.program-search input {
+  width: 100%;
+  padding: 14px 46px 14px 46px;
+  font-size: 15px;
+  color: var(--font-color);
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color-scheme: dark;
+  transition: border-color 0.2s;
+}
+.program-search input::placeholder {
+  color: rgba(243, 244, 244, 0.45);
+}
+.program-search input:hover,
+.program-search input:focus {
+  border-color: var(--aksen);
+}
+.program-search input::-webkit-search-cancel-button {
+  display: none; /* pakai tombol hapus sendiri */
+}
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--aksen);
+  pointer-events: none;
+}
+.search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--font-color);
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.search-clear:hover {
+  background-color: var(--primary);
+}
+.search-clear[hidden] {
+  display: none;
+}
+
+.program-info {
+  min-height: 1.4em;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--font-sekunder);
+}
+
+/* Grid card */
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.program-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 28px 24px;
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  /* keadaan awal: tersembunyi, geser sedikit ke bawah */
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    background-color 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+.program-card.tampil {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Hover: naik sedikit + bayangan */
+.program-card.tampil:hover {
+  transform: translateY(-8px);
+  background-color: var(--card-hover);
+  border-color: var(--aksen);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
+  transition-delay: 0s !important;
+}
+
+.program-ikon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  font-size: 32px;
+  background-color: var(--primary);
+  border: 2px solid var(--aksen);
+  border-radius: 14px;
+  transition: transform 0.3s ease;
+}
+.program-card:hover .program-ikon {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+.program-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--font-color);
+}
+.program-card p {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(243, 244, 244, 0.78);
+}
+.program-level {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  color: var(--aksen);
+  border: 1px solid var(--aksen);
+  border-radius: 999px;
+}
+
+.program-kosong {
+  margin-top: 8px;
+  text-align: center;
+  color: var(--font-sekunder);
+  padding: 32px 0;
+}
+.program-kosong[hidden] {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .program-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .program {
+    padding: 56px 16px;
+  }
+  .program h2 {
     font-size: 30px;
+  }
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Pengguna yang mematikan animasi: card langsung tampil.
+   (!important karena aturan reduced-motion sebelumnya sudah mematikan transition) */
+@media (prefers-reduced-motion: reduce) {
+  .program-card {
+    opacity: 1;
+    transform: none;
   }
 }
