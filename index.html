@@ -14,13 +14,19 @@
   </head>
   <body>
     <!-- NAVBAR START -->
-<nav class="nav" id="navbar" aria-label="Navigasi utama">
+    <nav class="nav" id="navbar" aria-label="Navigasi utama">
       <div class="nav-container">
         <!-- Logo: klik untuk kembali ke atas halaman -->
         <a href="#hero" class="nav-logo">Fit<span>Area</span></a>
 
         <!-- Tombol hamburger, hanya tampil di layar kecil -->
-        <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Buka menu"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
           <span></span><span></span><span></span>
         </button>
 
@@ -39,7 +45,7 @@
     <!-- NAVBAR END -->
 
     <!-- hero start-->
-    <section class="hero">
+    <section class="hero" id="hero">
       <div
         class="hero-photo"
         role="img"
@@ -78,23 +84,33 @@
     </section>
     <!-- hero end -->
 
-     <!-- SECTION PROGRAM LATIHAN, TRAINER, JADWAL KELAS, MEMBERSHIP, TENGOK INI COY -->
+    <!-- SECTION PROGRAM LATIHAN, TRAINER, JADWAL KELAS, MEMBERSHIP, TENGOK INI COY -->
 
-         <!-- JOIN MEMBERSHIP START -->
+    <!-- JOIN MEMBERSHIP START -->
     <section class="join" id="join">
       <div class="join-container">
         <!-- Kolom kiri: penjelasan + alur -->
         <div class="join-info">
           <h2>Mulai latihan bersama FitArea</h2>
           <p>
-            Isi formulir, pilih paket, dan membership kamu aktif setelah pembayaran
-            dikonfirmasi. Tanggal berakhir dihitung otomatis dari durasi paket.
+            Isi formulir, pilih paket, dan membership kamu aktif setelah
+            pembayaran dikonfirmasi. Tanggal berakhir dihitung otomatis dari
+            durasi paket.
           </p>
           <!-- Urutan nyata (1-2-3), jadi pakai <ol> -->
           <ol>
-            <li><strong>Isi data diri</strong><span>Nama, kontak, dan paket pilihan kamu.</span></li>
-            <li><strong>Lakukan pembayaran</strong><span>Status awal unpaid, berubah jadi paid setelah lunas.</span></li>
-            <li><strong>Membership aktif</strong><span>Kamu bisa booking kelas dan check-in.</span></li>
+            <li>
+              <strong>Isi data diri</strong
+              ><span>Nama, kontak, dan paket pilihan kamu.</span>
+            </li>
+            <li>
+              <strong>Lakukan pembayaran</strong
+              ><span>Status awal unpaid, berubah jadi paid setelah lunas.</span>
+            </li>
+            <li>
+              <strong>Membership aktif</strong
+              ><span>Kamu bisa booking kelas dan check-in.</span>
+            </li>
           </ol>
         </div>
 
@@ -106,28 +122,51 @@
             <img src="hiasan_icon.jpg" alt="" width="64" height="64" />
           </div>
 
-          <label>Nama lengkap
-            <input type="text" name="nama" autocomplete="name" placeholder="Contoh: Andi Pratama" required />
+          <label
+            >Nama lengkap
+            <input
+              type="text"
+              name="nama"
+              autocomplete="name"
+              placeholder="Contoh: Andi Pratama"
+              required
+            />
             <small></small>
           </label>
 
           <div class="join-row">
-            <label>Email
-              <input type="email" name="email" autocomplete="email" placeholder="nama@email.com" required />
+            <label
+              >Email
+              <input
+                type="email"
+                name="email"
+                autocomplete="email"
+                placeholder="nama@email.com"
+                required
+              />
               <small></small>
             </label>
-            <label>No. WhatsApp
-              <input type="tel" name="telepon" autocomplete="tel" placeholder="08xxxxxxxxxx" required />
+            <label
+              >No. WhatsApp
+              <input
+                type="tel"
+                name="telepon"
+                autocomplete="tel"
+                placeholder="08xxxxxxxxxx"
+                required
+              />
               <small></small>
             </label>
           </div>
 
           <div class="join-row">
-            <label>Tanggal lahir
+            <label
+              >Tanggal lahir
               <input type="date" name="tglLahir" required />
               <small></small>
             </label>
-            <label>Jenis kelamin
+            <label
+              >Jenis kelamin
               <select name="gender" required>
                 <option value="">Pilih</option>
                 <option value="L">Laki-laki</option>
@@ -140,36 +179,80 @@
           <!--
             CUY! data-durasi (bulan) dan data-harga dibaca script.js untuk
             menghitung tanggal berakhir & total.-->
-          <label>Paket membership
+          <label
+            >Paket membership
             <select name="paket" id="paket" required>
               <option value="">Pilih paket</option>
-              <option value="1" data-nama="Basic" data-durasi="1" data-harga="250000">Basic - 1 bulan</option>
-              <option value="2" data-nama="Silver" data-durasi="3" data-harga="650000">Silver - 3 bulan</option>
-              <option value="3" data-nama="Gold" data-durasi="6" data-harga="1200000">Gold - 6 bulan</option>
-              <option value="4" data-nama="Platinum" data-durasi="12" data-harga="2200000">Platinum - 12 bulan</option>
+              <option
+                value="1"
+                data-nama="Basic"
+                data-durasi="1"
+                data-harga="250000"
+              >
+                Basic - 1 bulan
+              </option>
+              <option
+                value="2"
+                data-nama="Silver"
+                data-durasi="3"
+                data-harga="650000"
+              >
+                Silver - 3 bulan
+              </option>
+              <option
+                value="3"
+                data-nama="Gold"
+                data-durasi="6"
+                data-harga="1200000"
+              >
+                Gold - 6 bulan
+              </option>
+              <option
+                value="4"
+                data-nama="Platinum"
+                data-durasi="12"
+                data-harga="2200000"
+              >
+                Platinum - 12 bulan
+              </option>
             </select>
             <small></small>
           </label>
 
-          <label>Tanggal mulai
+          <label
+            >Tanggal mulai
             <input type="date" name="tglMulai" id="tglMulai" required />
             <small></small>
           </label>
 
           <!-- Ringkasan MASA BERLAKU MEMBERSHIP -->
           <dl class="join-summary" aria-live="polite">
-            <div><dt>Paket</dt><dd id="sumPaket">-</dd></div>
-            <div><dt>Berlaku sampai</dt><dd id="sumBerakhir">-</dd></div>
-            <div><dt>Total bayar</dt><dd id="sumTotal">-</dd></div>
+            <div>
+              <dt>Paket</dt>
+              <dd id="sumPaket">-</dd>
+            </div>
+            <div>
+              <dt>Berlaku sampai</dt>
+              <dd id="sumBerakhir">-</dd>
+            </div>
+            <div>
+              <dt>Total bayar</dt>
+              <dd id="sumTotal">-</dd>
+            </div>
           </dl>
 
           <label class="join-check">
             <input type="checkbox" name="setuju" required />
-            <span>Saya setuju dengan syarat dan ketentuan keanggotaan FitArea.</span>
+            <span
+              >Saya setuju dengan syarat dan ketentuan keanggotaan
+              FitArea.</span
+            >
             <small></small>
           </label>
 
-          <button type="submit" class="join-btn" id="btnSubmit">Daftar sekarang</button>
+          <button type="submit" class="join-btn" id="btnSubmit">
+            Daftar sekarang
+          </button>
 
           <!-- Pesan hasil submit -->
           <p class="join-msg" id="formMessage" role="status"></p>
@@ -177,7 +260,6 @@
       </div>
     </section>
     <!-- JOIN MEMBERSHIP END -->
-
 
     <!-- DISINI BARU BMI CALCULATOR, FAQ, FOOTER -->
 
