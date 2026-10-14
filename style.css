@@ -2112,7 +2112,63 @@ p {
   line-height: 1.6;
 }
 
+/* Judul sub-bagian di setiap kolom footer */
+.footer-col h4 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--aksen);
+  margin-bottom: 16px;
+}
 
+/* List informasi jam operasional dan kontak */
+.footer-info {
+  padding: 0;
+  margin: 0;
+}
+
+.footer-info li {
+  color: rgba(243, 244, 244, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Penekanan warna putih terang pada label kontak/jam */
+.footer-info li span,
+.footer-info li strong {
+  color: var(--font-color);
+}
+
+/* Area paling bawah untuk hak cipta (copyright) */
+.footer-bottom {
+  background-color: var(--bg);
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85rem;
+  color: var(--font-sekunder);
+  border-top: 1px solid var(--line);
+}
+
+/* Responsif footer untuk layar tablet (maks 900px) */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsif footer untuk layar HP (maks 520px) */
+@media (max-width: 520px) {
+  .site-footer {
+    padding-top: 48px;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
 
 
 
