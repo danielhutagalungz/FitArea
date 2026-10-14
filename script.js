@@ -206,3 +206,36 @@ form.addEventListener("submit", async (e) => {
     btnSubmit.textContent = "Daftar sekarang";
   }
 });
+
+
+// LOGIKA FAQ ACCORDION (SINGLE-OPEN)
+// ------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  // Ambil semua elemen tombol header accordion
+  const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+  accordionHeaders.forEach((header) => {
+    header.addEventListener("click", () => {
+      const currentItem = header.parentElement;
+      const isOpen = currentItem.classList.contains("active");
+
+      // Logika Single-Open: Tutup semua item accordion yang sedang aktif/terbuka
+      document.querySelectorAll(".accordion-item").forEach((item) => {
+        item.classList.remove("active");
+        
+        // Reset atribut accessibility aria-expanded
+        const itemHeader = item.querySelector(".accordion-header");
+        if (itemHeader) {
+          itemHeader.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // Jika item yang diklik sebelumnya tidak terbuka, buka item tersebut
+      if (!isOpen) {
+        currentItem.classList.add("active");
+        header.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+});
+
