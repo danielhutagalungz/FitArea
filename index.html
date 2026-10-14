@@ -157,6 +157,64 @@
     </section>
     <!-- JADWAL KELAS END -->
 
+    <!-- MEMBERSHIP START -->
+    <section class="membership" id="membership">
+      <h2>Paket Membership</h2>
+      <p class="sub">Pilih paket yang sesuai dengan komitmen latihanmu</p>
+
+      <div class="membership-grid">
+      <!-- Basic -->
+      <article class="paket-card">
+      <h3>Basic</h3>
+      <p class="paket-harga">Rp250.000 <span>/ 1 bulan</span></p>
+        <ul>
+          <li>Akses gym 05.00–23.00</li>
+          <li>Locker &amp; shower</li>
+          <li>Booking kelas grup</li>
+        </ul>
+      <a href="#join" class="btn-paket" data-paket="1">Pilih paket</a>
+      </article>
+
+      <!-- Silver -->
+      <article class="paket-card">
+        <h3>Silver</h3>
+        <p class="paket-harga">Rp650.000 <span>/ 3 bulan</span></p>
+        <ul>
+          <li>Semua fasilitas Basic</li>
+          <li>Hemat sekitar 13%</li>
+          <li>1x sesi konsultasi trainer</li>
+        </ul>
+        <a href="#join" class="btn-paket" data-paket="2">Pilih paket</a>
+      </article>
+
+      <!-- Gold (paling populer) -->
+      <article class="paket-card populer">
+        <span class="paket-badge">Paling populer</span>
+        <h3>Gold</h3>
+        <p class="paket-harga">Rp1.200.000 <span>/ 6 bulan</span></p>
+        <ul>
+          <li>Semua fasilitas Silver</li>
+          <li>Hemat sekitar 20%</li>
+          <li>3x sesi personal training</li>
+        </ul>
+        <a href="#join" class="btn-paket" data-paket="3">Pilih paket</a>
+      </article>
+
+      <!-- Platinum -->
+      <article class="paket-card">
+        <h3>Platinum</h3>
+        <p class="paket-harga">Rp2.200.000 <span>/ 12 bulan</span></p>
+        <ul>
+          <li>Semua fasilitas Gold</li>
+          <li>Hemat sekitar 27%</li>
+          <li>6x sesi personal training</li>
+        </ul>
+        <a href="#join" class="btn-paket" data-paket="4">Pilih paket</a>
+      </article>
+      </div>
+    </section>
+    <!-- MEMBERSHIP END -->
+
     <!-- SECTION PROGRAM LATIHAN, TRAINER, JADWAL KELAS, MEMBERSHIP, TENGOK INI COY -->
 
     <!-- JOIN MEMBERSHIP START -->
@@ -334,10 +392,108 @@
     </section>
     <!-- JOIN MEMBERSHIP END -->
 
-    <!-- DISINI BARU BMI CALCULATOR, FAQ, FOOTER -->
+    <!-- BMI CALCULATOR START -->
+    <section class="bmi" id="bmi">
+      <h2>Kalkulator BMI</h2>
+      <p class="sub">Cek indeks massa tubuhmu sebelum menentukan program latihan</p>
+
+      <div class="bmi-container">
+        <!-- Kiri: form input -->
+        <form class="bmi-form" id="bmiForm" novalidate>
+          <h3>Data tubuhmu</h3>
+
+          <label
+            >Tinggi badan
+            <span class="bmi-field">
+              <input
+                type="number"
+                id="bmiTinggi"
+                name="tinggi"
+                inputmode="decimal"
+                step="0.1"
+                placeholder="Contoh: 170"
+              />
+              <em>cm</em>
+            </span>
+            <small></small>
+          </label>
+
+          <label
+            >Berat badan
+            <span class="bmi-field">
+              <input
+                type="number"
+                id="bmiBerat"
+                name="berat"
+                inputmode="decimal"
+                step="0.1"
+                placeholder="Contoh: 65"
+              />
+              <em>kg</em>
+            </span>
+            <small></small>
+          </label>
+
+          <div class="bmi-actions">
+            <button type="submit" class="join-btn">Hitung BMI</button>
+            <button type="button" class="bmi-reset" id="bmiReset">Reset</button>
+          </div>
+
+          <p class="bmi-catatan">
+            Rumus: berat (kg) &divide; tinggi (m)&sup2;. Hasil ini perkiraan
+            untuk orang dewasa dan bukan diagnosis medis.
+          </p>
+        </form>
+
+        <!-- Kanan: hasil -->
+        <div class="bmi-hasil" id="bmiHasil" data-kategori="" aria-live="polite">
+          <p class="bmi-label">BMI kamu</p>
+          <p class="bmi-angka" id="bmiAngka">--</p>
+          <span class="bmi-kategori" id="bmiKategori">Belum dihitung</span>
+
+          <!-- Gauge: 4 segmen sesuai kategori, penanda digeser oleh JS -->
+          <div class="bmi-gauge" aria-hidden="true">
+            <div class="bmi-bar">
+              <span class="seg-kurang"></span>
+              <span class="seg-normal"></span>
+              <span class="seg-berlebih"></span>
+              <span class="seg-obesitas"></span>
+            </div>
+            <div class="bmi-marker" id="bmiMarker"></div>
+            <div class="bmi-skala">
+              <span style="left: 14%">18,5</span>
+              <span style="left: 40%">25</span>
+              <span style="left: 60%">30</span>
+            </div>
+          </div>
+
+          <p class="bmi-pesan" id="bmiPesan">
+            Isi tinggi dan berat badan, lalu tekan Hitung BMI.
+          </p>
+
+          <dl class="bmi-detail">
+            <div>
+              <dt>Berat ideal</dt>
+              <dd id="bmiIdeal">-</dd>
+            </div>
+            <div>
+              <dt>Target</dt>
+              <dd id="bmiSelisih">-</dd>
+            </div>
+          </dl>
+
+          <a href="#program" class="btn btn-primary">Lihat program latihan</a>
+        </div>
+      </div>
+    </section>
+    <!-- BMI CALCULATOR END -->
+
+    <!-- DISINI BARU FAQ, FOOTER -->
 
     <script src="script.js"></script>
     <script src="jadwal.js"></script>
     <script src="program.js"></script>
+    <script src="membership.js"></script>
+    <script src="bmi.js"></script>
   </body>
 </html>

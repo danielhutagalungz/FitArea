@@ -1267,3 +1267,496 @@ p {
     transform: none;
   }
 }
+
+/* =========================================================
+   MEMBERSHIP
+   ========================================================= */
+.membership {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  scroll-margin-top: var(--nav-h);
+}
+
+.membership h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--font-color);
+}
+/* Garis aksen kecil di bawah judul (sama seperti Jadwal) */
+.membership h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 14px auto 0;
+  background-color: var(--aksen);
+  border-radius: 2px;
+}
+
+.membership .sub {
+  text-align: center;
+  color: var(--font-sekunder);
+  margin: 16px 0 48px;
+}
+
+.membership-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Card paket: gaya sama dengan card Program */
+.paket-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px 28px;
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  text-align: left;
+  transition:
+    transform 0.25s,
+    background-color 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+.paket-card:hover {
+  transform: translateY(-8px);
+  background-color: var(--card-hover);
+  border-color: var(--aksen);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
+}
+
+/* Paket paling populer: border aksen + sorotan lembut */
+.paket-card.populer {
+  border: 2px solid var(--aksen);
+  box-shadow: 0 0 0 4px rgba(95, 149, 152, 0.12);
+}
+
+.paket-badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 14px;
+  border-radius: 999px;
+  background-color: var(--aksen);
+  color: var(--bg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.paket-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--aksen);
+  margin-bottom: 10px;
+}
+
+.paket-harga {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--font-color);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.paket-harga span {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--font-sekunder);
+}
+
+.paket-card ul {
+  flex-grow: 1;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+.paket-card li {
+  position: relative;
+  padding: 7px 0 7px 28px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(243, 244, 244, 0.85);
+}
+/* Centang bulat kecil */
+.paket-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgba(95, 149, 152, 0.18);
+  border: 1px solid var(--aksen);
+  color: var(--aksen);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+/* Tombol: outline (sama seperti .btn-outline), penuh untuk paket populer */
+.btn-paket {
+  display: block;
+  padding: 12px 20px;
+  border: 2px solid var(--aksen);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--font-color);
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 500;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+.btn-paket:hover {
+  background-color: var(--aksen);
+  color: var(--bg);
+}
+.paket-card.populer .btn-paket {
+  background-color: var(--aksen);
+  color: var(--bg);
+}
+.paket-card.populer .btn-paket:hover {
+  background-color: var(--font-color);
+  border-color: var(--font-color);
+}
+.btn-paket:focus-visible {
+  outline: 2px solid var(--font-color);
+  outline-offset: 4px;
+}
+
+@media (max-width: 1000px) {
+  .membership-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px; /* ruang untuk badge "Paling populer" */
+  }
+}
+@media (max-width: 600px) {
+  .membership {
+    padding: 56px 16px;
+  }
+  .membership-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   KALKULATOR BMI
+   ========================================================= */
+.bmi {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  scroll-margin-top: var(--nav-h);
+}
+
+.bmi h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--font-color);
+}
+.bmi h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 14px auto 0;
+  background-color: var(--aksen);
+  border-radius: 2px;
+}
+.bmi .sub {
+  text-align: center;
+  color: var(--font-sekunder);
+  margin: 16px 0 48px;
+}
+
+.bmi-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+/* Kartu form: gaya sama dengan .join-form */
+.bmi-form {
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+  padding: 2.2rem;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.bmi-form h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--font-color);
+}
+.bmi-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--font-color);
+}
+
+/* Input dengan satuan (cm / kg) di sisi kanan */
+.bmi-field {
+  position: relative;
+  display: block;
+}
+.bmi-field input {
+  width: 100%;
+  padding: 0.8rem 3rem 0.8rem 0.9rem;
+  font-size: 0.95rem;
+  color: var(--font-color);
+  background-color: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  transition: border-color 0.2s;
+  color-scheme: dark;
+  -moz-appearance: textfield;
+}
+.bmi-field input::-webkit-outer-spin-button,
+.bmi-field input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.bmi-field input::placeholder {
+  color: rgba(243, 244, 244, 0.4);
+}
+.bmi-field input:hover,
+.bmi-field input:focus {
+  border-color: var(--aksen);
+}
+.bmi-field em {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--aksen);
+  pointer-events: none;
+}
+.bmi-form small {
+  min-height: 1.1em;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--error);
+}
+.bmi-form label.invalid input {
+  border-color: var(--error);
+}
+
+.bmi-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+}
+.bmi-reset {
+  padding: 0 1.4rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--font-color);
+  background: transparent;
+  border: 2px solid var(--aksen);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.bmi-reset:hover {
+  background-color: var(--primary);
+}
+.bmi-catatan {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--font-sekunder);
+}
+
+/* Kartu hasil: warna aksen mengikuti kategori lewat --warna */
+.bmi-hasil {
+  --warna: var(--aksen);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 2.2rem;
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: border-color 0.3s;
+}
+.bmi-hasil[data-kategori="kurang"] {
+  --warna: #6ea8c9;
+}
+.bmi-hasil[data-kategori="normal"] {
+  --warna: #5fb59a;
+}
+.bmi-hasil[data-kategori="berlebih"] {
+  --warna: #e0b45c;
+}
+.bmi-hasil[data-kategori="obesitas"] {
+  --warna: var(--error);
+}
+.bmi-hasil:not([data-kategori=""]) {
+  border-color: var(--warna);
+}
+
+.bmi-label {
+  font-size: 0.88rem;
+  color: var(--font-sekunder);
+}
+.bmi-angka {
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 8vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--warna);
+  transition: color 0.3s;
+}
+.bmi-kategori {
+  padding: 4px 14px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--warna);
+  border: 1px solid var(--warna);
+  border-radius: 999px;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+
+/* Gauge */
+.bmi-gauge {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  padding-bottom: 22px;
+}
+.bmi-bar {
+  display: flex;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+}
+.bmi-bar span:nth-child(1) {
+  width: 14%;
+  background-color: #6ea8c9;
+}
+.bmi-bar span:nth-child(2) {
+  width: 26%;
+  background-color: #5fb59a;
+}
+.bmi-bar span:nth-child(3) {
+  width: 20%;
+  background-color: #e0b45c;
+}
+.bmi-bar span:nth-child(4) {
+  width: 40%;
+  background-color: var(--error);
+}
+.bmi-marker {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 4px;
+  height: 20px;
+  margin-left: -2px;
+  background-color: var(--font-color);
+  border-radius: 2px;
+  box-shadow: 0 0 0 3px rgba(6, 30, 41, 0.7);
+  opacity: 0;
+  transition:
+    left 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s;
+}
+.bmi-marker.tampil {
+  opacity: 1;
+}
+.bmi-skala span {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--font-sekunder);
+}
+
+.bmi-pesan {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(243, 244, 244, 0.85);
+}
+
+/* Ringkasan: gaya sama dengan .join-summary */
+.bmi-detail {
+  display: grid;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 1rem 1.1rem;
+  background-color: var(--bg);
+  border: 1px dashed var(--aksen);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.bmi-detail div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.bmi-detail dt {
+  color: rgba(243, 244, 244, 0.7);
+}
+.bmi-detail dd {
+  font-weight: 500;
+  text-align: right;
+  color: var(--font-color);
+}
+
+@media (max-width: 800px) {
+  .bmi-container {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .bmi {
+    padding: 56px 16px;
+  }
+  .bmi-form,
+  .bmi-hasil {
+    padding: 1.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bmi-marker {
+    transition: none;
+  }
+}
