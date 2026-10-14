@@ -3,8 +3,8 @@
   --bg: #061e29;
   --aksen: #5f9598;
   --font-color: #f3f4f4;
-  --font-heading: "Oswald", sans-serif;
-  --font-body: "Roboto", Arial, sans-serif;
+  --font-heading: "Oswald", Arial, sans-serif;
+  --font-body: "Poppins", Arial, sans-serif;
 
   /* tambahan untuk section jadwal */
   --card: #0c2c3b;
@@ -1856,7 +1856,11 @@ p {
   place-items: center;
   overflow: hidden;
   /* latar cadangan saat foto belum ada */
-  background: radial-gradient(circle at 50% 35%, var(--primary), var(--card) 75%);
+  background: radial-gradient(
+    circle at 50% 35%,
+    var(--primary),
+    var(--card) 75%
+  );
 }
 /* Foto ada di lapisan sendiri: kalau file tidak ditemukan, inisial tetap terlihat */
 .trainer-foto::before {
@@ -2173,13 +2177,3 @@ p {
     gap: 28px;
   }
 }
-
-
-
-
-
-
-
-
-
-
