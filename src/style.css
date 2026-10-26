@@ -227,6 +227,7 @@ p {
 
 /* Tombol */
 .btn {
+  background-color: var(--aksen);
   display: inline-block;
   padding: 14px 30px;
   border-radius: 999px;
