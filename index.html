@@ -4,7 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fit Area</title>
-    <link rel="stylesheet" href="style.css" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      /* Token Tailwind menunjuk ke CSS variable di style.css (:root),
+         jadi warna & font tetap satu sumber. Contoh: bg-aksen = var(--aksen) */
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              aksen: "var(--aksen)",
+              page: "var(--bg)",
+              card: "var(--card)",
+              primary: "var(--primary)",
+              ink: "var(--font-color)",
+              muted: "var(--font-sekunder)",
+              line: "var(--line)",
+            },
+            fontFamily: {
+              heading: ["Oswald", "sans-serif"],
+              body: ["Roboto", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,336 +37,7 @@
     />
   </head>
   <body>
-    <!-- NAVBAR START -->
-    <nav class="nav" id="navbar" aria-label="Navigasi utama">
-      <div class="nav-container">
-        <!-- Logo: klik untuk kembali ke atas halaman -->
-        <a href="#hero" class="nav-logo">Fit<span>Area</span></a>
-
-        <!-- Tombol hamburger, hanya tampil di layar kecil -->
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          aria-label="Buka menu"
-          aria-expanded="false"
-          aria-controls="navMenu"
-        >
-          <span></span><span></span><span></span>
-        </button>
-
-        <!-- href harus sama dengan id masing-masing section -->
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#hero">Beranda</a></li>
-          <li><a href="#program">Program</a></li>
-          <li><a href="#trainer">Trainer</a></li>
-          <li><a href="#jadwal">Jadwal</a></li>
-          <li><a href="#membership">Membership</a></li>
-          <li><a href="#bmi">BMI</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-    </nav>
-    <!-- NAVBAR END -->
-
-    <!-- hero start-->
-    <section class="hero" id="hero">
-      <div
-        class="hero-photo"
-        role="img"
-        aria-label="Area angkat beban di Fit Area"
-      ></div>
-
-      <div class="hero-text">
-        <h1>Fit Area</h1>
-        <p class="hero-tagline">Latihan serius, tempat yang nyaman.</p>
-        <p class="hero-desc">
-          Alat lengkap, pelatih bersertifikat, dan buka dari subuh sampai malam.
-          Daftar hari ini, mulai latihan besok pagi.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#daftar" class="btn btn-primary">Daftar member</a>
-          <a href="#coba-gratis" class="btn btn-outline">Coba gratis 1 hari</a>
-        </div>
-
-        <!-- Info singkat (ubah sesuai data gym Anda) -->
-        <dl class="hero-info">
-          <div>
-            <dt>Jam buka</dt>
-            <dd>05.00–23.00</dd>
-          </div>
-          <div>
-            <dt>Pelatih</dt>
-            <dd>12 orang</dd>
-          </div>
-          <div>
-            <dt>Mulai dari</dt>
-            <dd>Rp250.000</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-    <!-- hero end -->
-
-    <!-- PROGRAM LATIHAN START -->
-    <section class="program" id="program">
-      <h2>Program Latihan</h2>
-      <p class="sub">Temukan kelas yang cocok dengan tujuan latihanmu</p>
-
-      <!-- Pencarian -->
-      <div class="program-search" role="search">
-        <label for="cariProgram" class="sr-only">Cari program latihan</label>
-        <svg
-          class="search-icon"
-          viewBox="0 0 24 24"
-          width="20"
-          height="20"
-          aria-hidden="true"
-        >
-          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2" />
-          <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-        <input
-          type="search"
-          id="cariProgram"
-          placeholder="Cari program, contoh: yoga, bakar kalori, otot..."
-          autocomplete="off"
-        />
-        <button type="button" id="hapusCari" class="search-clear" aria-label="Hapus pencarian" hidden>&times;</button>
-      </div>
-
-      <p class="program-info" id="programInfo" aria-live="polite"></p>
-
-      <div class="program-grid" id="programGrid"></div>
-
-      <p class="program-kosong" id="programKosong" hidden>
-        Program tidak ditemukan. Coba kata kunci lain.
-      </p>
-    </section>
-    <!-- PROGRAM LATIHAN END -->
-
-    <!-- JADWAL KELAS START -->
-    <section class="jadwal" id="jadwal">
-      <h2>Jadwal Kelas</h2>
-      <p class="sub">Pilih hari untuk melihat kelas yang tersedia</p>
-
-      <div class="filter" id="filter">
-        <button class="aktif" data-hari="Semua">Semua</button>
-        <button data-hari="Senin">Senin</button>
-        <button data-hari="Selasa">Selasa</button>
-        <button data-hari="Rabu">Rabu</button>
-        <button data-hari="Kamis">Kamis</button>
-        <button data-hari="Jumat">Jumat</button>
-        <button data-hari="Sabtu">Sabtu</button>
-      </div>
-
-      <div class="tabel-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Hari</th>
-              <th>Jam</th>
-              <th>Kelas</th>
-              <th>Trainer</th>
-              <th>Durasi</th>
-            </tr>
-          </thead>
-          <tbody id="isi-jadwal"></tbody>
-        </table>
-      </div>
-
-      <div class="area-toggle">
-        <button class="toggle-jadwal" id="toggle-jadwal" type="button">
-          <span class="teks-tombol">Lihat Selengkapnya</span>
-          <span class="panah">&#9660;</span>
-        </button>
-      </div>
-
-      <p class="info-jumlah" id="info-jumlah"></p>
-    </section>
-    <!-- JADWAL KELAS END -->
-
-    <!-- SECTION PROGRAM LATIHAN, TRAINER, JADWAL KELAS, MEMBERSHIP, TENGOK INI COY -->
-
-    <!-- JOIN MEMBERSHIP START -->
-    <section class="join" id="join">
-      <div class="join-container">
-        <!-- Kolom kiri: penjelasan + alur -->
-        <div class="join-info">
-          <h2>Mulai latihan bersama FitArea</h2>
-          <p>
-            Isi formulir, pilih paket, dan membership kamu aktif setelah
-            pembayaran dikonfirmasi. Tanggal berakhir dihitung otomatis dari
-            durasi paket.
-          </p>
-          <!-- Urutan nyata (1-2-3), jadi pakai <ol> -->
-          <ol>
-            <li>
-              <strong>Isi data diri</strong
-              ><span>Nama, kontak, dan paket pilihan kamu.</span>
-            </li>
-            <li>
-              <strong>Lakukan pembayaran</strong
-              ><span>Status awal unpaid, berubah jadi paid setelah lunas.</span>
-            </li>
-            <li>
-              <strong>Membership aktif</strong
-              ><span>Kamu bisa booking kelas dan check-in.</span>
-            </li>
-          </ol>
-        </div>
-
-        <!-- Kolom kanan: form. Tiap field = <label> berisi input + <small> untuk pesan error -->
-        <form class="join-form" id="joinForm" novalidate>
-          <div class="join-head">
-            <h3>Formulir pendaftaran</h3>
-            <!-- Ikon hiasan (alt kosong karena hanya dekorasi) -->
-            <img src="hiasan_icon.jpg" alt="" width="64" height="64" />
-          </div>
-
-          <label
-            >Nama lengkap
-            <input
-              type="text"
-              name="nama"
-              autocomplete="name"
-              placeholder="Contoh: Andi Pratama"
-              required
-            />
-            <small></small>
-          </label>
-
-          <div class="join-row">
-            <label
-              >Email
-              <input
-                type="email"
-                name="email"
-                autocomplete="email"
-                placeholder="nama@email.com"
-                required
-              />
-              <small></small>
-            </label>
-            <label
-              >No. WhatsApp
-              <input
-                type="tel"
-                name="telepon"
-                autocomplete="tel"
-                placeholder="08xxxxxxxxxx"
-                required
-              />
-              <small></small>
-            </label>
-          </div>
-
-          <div class="join-row">
-            <label
-              >Tanggal lahir
-              <input type="date" name="tglLahir" required />
-              <small></small>
-            </label>
-            <label
-              >Jenis kelamin
-              <select name="gender" required>
-                <option value="">Pilih</option>
-                <option value="L">Laki-laki</option>
-                <option value="P">Perempuan</option>
-              </select>
-              <small></small>
-            </label>
-          </div>
-
-          <!--
-            CUY! data-durasi (bulan) dan data-harga dibaca script.js untuk
-            menghitung tanggal berakhir & total.-->
-          <label
-            >Paket membership
-            <select name="paket" id="paket" required>
-              <option value="">Pilih paket</option>
-              <option
-                value="1"
-                data-nama="Basic"
-                data-durasi="1"
-                data-harga="250000"
-              >
-                Basic - 1 bulan
-              </option>
-              <option
-                value="2"
-                data-nama="Silver"
-                data-durasi="3"
-                data-harga="650000"
-              >
-                Silver - 3 bulan
-              </option>
-              <option
-                value="3"
-                data-nama="Gold"
-                data-durasi="6"
-                data-harga="1200000"
-              >
-                Gold - 6 bulan
-              </option>
-              <option
-                value="4"
-                data-nama="Platinum"
-                data-durasi="12"
-                data-harga="2200000"
-              >
-                Platinum - 12 bulan
-              </option>
-            </select>
-            <small></small>
-          </label>
-
-          <label
-            >Tanggal mulai
-            <input type="date" name="tglMulai" id="tglMulai" required />
-            <small></small>
-          </label>
-
-          <!-- Ringkasan MASA BERLAKU MEMBERSHIP -->
-          <dl class="join-summary" aria-live="polite">
-            <div>
-              <dt>Paket</dt>
-              <dd id="sumPaket">-</dd>
-            </div>
-            <div>
-              <dt>Berlaku sampai</dt>
-              <dd id="sumBerakhir">-</dd>
-            </div>
-            <div>
-              <dt>Total bayar</dt>
-              <dd id="sumTotal">-</dd>
-            </div>
-          </dl>
-
-          <label class="join-check">
-            <input type="checkbox" name="setuju" required />
-            <span
-              >Saya setuju dengan syarat dan ketentuan keanggotaan
-              FitArea.</span
-            >
-            <small></small>
-          </label>
-
-          <button type="submit" class="join-btn" id="btnSubmit">
-            Daftar sekarang
-          </button>
-
-          <!-- Pesan hasil submit -->
-          <p class="join-msg" id="formMessage" role="status"></p>
-        </form>
-      </div>
-    </section>
-    <!-- JOIN MEMBERSHIP END -->
-
-    <!-- DISINI BARU BMI CALCULATOR, FAQ, FOOTER -->
-
-    <script src="script.js"></script>
-    <script src="jadwal.js"></script>
-    <script src="program.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
